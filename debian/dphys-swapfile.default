@@ -1,0 +1,13 @@
+# /etc/default/dphys-swapfile - user settings for dphys-swapfile package
+# author Neil Franklin, last modification 2004.05.28
+
+# this file is sourced with . so full normal sh syntax applies
+
+# where we want the swapfile to be, this is the default
+#   if you change this, also alter /var/lib/dpkg/info/dphys-swapfile.postrm
+#     for the reason see comments there, praise Debian
+#   and yes, that is not a config file, and is not treated as such
+#CONF_SWAPFILE=/var/swap
+
+# size we want to force it to be, default ist 2*RAM
+#CONF_SWAPSIZE=512

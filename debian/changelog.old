@@ -1,0 +1,47 @@
+dphys-swapfile (20040604.142815-1) stable; urgency=low
+
+  * separate project, renamed, separate action/init, delete in prerm
+
+ -- dphys2 make source package script <root@phys.ethz.ch>  Fri,  4 Jun 2004 14:28:15 +0200
+
+dphys2-swapfile (20040527.143106-1) stable; urgency=low
+
+  * change to using dh_* based source package
+
+ -- dphys2 make source package script <root@phys.ethz.ch>  Thu, 27 May 2004 14:31:06 +0200
+
+dphys2-swapfile (20031204.141601-1) stable; urgency=low
+
+  * no makesourcepackage stuff in init.d, separate script
+
+ -- dphys2 make source package script <root@phys.ethz.ch>  Thu,  4 Dec 2003 14:16:01 +0100
+
+dphys2-swapfile (20031120.142404-1) stable; urgency=low
+
+  * fixed init.d dual start|stop swapon|off error message
+
+ -- dphys2 make source package script <root@phys.ethz.ch>  Thu, 20 Nov 2003 14:24:04 +0100
+
+dphys2-swapfile (20031120.135304-1) stable; urgency=low
+
+  * added /etc/default example config file
+
+ -- dphys2 make source package script <root@phys.ethz.ch>  Thu, 20 Nov 2003 13:53:04 +0100
+
+dphys2-swapfile (20031120.124554-1) stable; urgency=low
+
+  * fixed init.d start output redirect bug
+
+ -- dphys2 make source package script <root@phys.ethz.ch>  Thu, 20 Nov 2003 12:45:54 +0100
+
+dphys2-swapfile (20031107.173603-1) stable; urgency=low
+
+  * ported to makesourcepackage, fixed runlevel
+
+ -- dphys2 make source package script <root@phys.ethz.ch>  Fri,  7 Nov 2003 14:26:11 +0100
+
+dphys-swapfile (20030815.175513-1) stable; urgency=high
+
+  * auto-generated release from versionless (=current) upstream
+
+ -- dphys2 makepackage script <root@phys.ethz.ch> 2003-08-15

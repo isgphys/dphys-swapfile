@@ -1,0 +1,63 @@
+#! /bin/sh
+# /etc/init.d/dphys-swapfile - automatically set up an swapfile
+# author franklin, last modification 2004.06.04
+# This script is copyright ETH Zuerich Physics Departement,
+#   use under either BSD or GPL license
+
+# this init.d script is intended to be run from rcS.d
+#   must run after  mount  of  /var  which may only happen in  S35mountall.sh
+#     for this reason we can not build swapfile until after  S35mountall.sh
+#       so we also need to use  init.d start|stop  to swapon|off our file
+#   and sensibly before the lots of stuff which may happen in  S40networking
+# this line with #@rc.d@ is needed for debian/rules file to find these settings
+#   format is as used by dh_installinit and update-rd.d, see their man pages
+#@rc.d@ start 37 S .
+
+# get ready to work
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+export PATH
+
+# what we are
+NAME=dphys-swapfile
+
+case "$1" in
+
+  start)
+    /bin/echo "Starting ${NAME} swapfile setup ..."
+
+    # (re-)size/-generate
+    # this will produce output, so no -n in above echo
+    /sbin/dphys-swapfile setup
+
+    # as S35mountall.sh has already run, do this from here
+    #   as there can be no swapon in /etc/fstab
+    /sbin/dphys-swapfile swapon
+
+    /bin/echo "done."
+    ;;
+
+
+  stop)
+    /bin/echo -n "Stopping ${NAME} swapfile setup ..."
+
+    # as no swapon or swapoff in /etc/fstab, do this from here
+    /sbin/dphys-swapfile swapoff
+
+    /bin/echo ", done."
+    ;;
+
+
+  restart|reload|force-reload)
+    /bin/echo "No daemon to (force-)re[start|load] in ${NAME}"
+    ;;
+
+
+ *)
+    /bin/echo "Usage: $0 {start|stop}"
+
+    exit 1
+    ;;
+
+esac
+
+exit 0

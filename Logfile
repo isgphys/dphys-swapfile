@@ -1,0 +1,187 @@
+http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile/Logfile - done, to do
+copyright ETH Zuerich Physics Departement, use under either BSD or GPL license
+author Neil Franklin, last modification see last entry near bottom
+
+background is the dphys2 project, read its Logfile at:
+  http://www.phys.ethz.ch/~franklin/Projects/dphys2/Logfile
+as part of that wrote this tool to auto-generate/us an swapfile
+  here only log of the events pertaining to making this tool
+
+2003.01.09 Thu
+dphys2 milestone 1 is reached, make archive copy to ../dphys2-20021218
+
+2003.04.17 Thu
+dphys2 milestone 2 is reached, make archive copy to ../dphys2-20030417
+
+2003.08.04 Mon
+dphys2 milestone 3 is reached, make archive copy to ../dphys2-20030804
+
+2003.08.14 Thu
+setup-dphys2, dbootstrap, INSTALL added option for no swap partition
+  only make option for partition/none, for file set to none and add later
+    so simply set ${CONF_SWAP_SIZE} to 0 or comment out its definition
+  also avoids trouble if user gives 0 and system tries to mkswap/use it
+all mounting seems to be in /etc/rcS.d, check when swap need to be up
+  before S35mountall.sh the swap file needs be be ready
+  but also used in S10checkroot.sh, for while fsck, and that before writable
+
+2003.08.15 Fri
+make package dphys-swapfile to set up and later resize existing swap file
+  run between rcS.d 30 (fsck, /var ready) and 35 (mount, uses swapfile)
+  making 1G takes 25s and mkswap 5s, so not every time, just when resize
+    compute new size, compare with old, if diff remove and make new
+  if config file do that size, else 2*RAM, usually about 1G
+    looking at host berlin, only 1.9G free from 10G disk, is 1.8G apt cache
+      add an apt-get clean to dphys-admin, as unlikely to reinstall, have LAN
+  decided to auto-select 2*RAM, unless user config /etc/default/dpyhs-swapfile
+    also limit to max 2G kernel limit
+  script is an init.d, will start on reboot, also run once on pkg install
+  added --purge to drop swapfile from fstab, swapoff, rm
+
+2003.10.03 Fri
+convert existing binary packages to using makesourcepackage
+  dsbg leave old hosts arizona,bludger,dudley (will be deleted later)
+    do as last with him site (he is actively working on it)
+  every package that is converted and on server, remove from CVS
+  do all other dphys-build/*/DEBIAN: admin, host-hagrid, ide-dma, reboot,
+    site-franklin-experimental, swapfile, user-info
+
+2003.10.31 Fri
+setup-dphys2 default swap off (for using use dphys-swap or similar)
+dphys2-swap worked over dphys-swap, /etc/rcS.d script
+  S32 is too early, /var may not be mounted (only in S35), use S37
+  S37 after swapon in S35, so need own swapo[n|ff], no line in fstab, comment
+
+2003.11.06 Thu
+further with converting dphys-swap to dphys2-swap, make upstream Makefile
+  move over existing changelog (uncompressed and renamed) to start new one
+  move over existing conffiles, fix packagename in /e/i.d/<packagename>
+    extend makesourcepackage to insert conffiles into package
+      also more than just README upstream doc, improve commenting dh_* sections
+      also to conffiles and postinst|prerm add also preinst and postrm
+      also install init.d script from debian/init.d, not in upstream Makefile
+  postinst angepasst, kein swapon, da  init.d start  das schon macht
+  prerm macht eh nix, standard nehmen
+  postrm muss nicht mehr benutztes swapfile loeschen
+    kann nicht  /e/i.d/d2-s purge  benutzen weil das bereits geloescht ist
+
+2003.11.07 Fri
+dphys2-swap init.d makesourcepackage  to modify/generate postinst and postrm
+  makesourcepackage rules file call to execute this section
+dphys2-swap upload to package server, apt-get update and install, OK
+  stop and start, OK, remove and install, OK, purge and install, OK
+  rebuild package with newer version number, apt-get update and upgrade, OK
+
+2003.11.13 Thu
+deleted old dphys-swapfile package from server, only in use on my home machines
+index.html rename dphys-swap to dphys2-swap and link .tar|.dsc|.tar.gz files
+  doku remarks that PXE net boot is possible (user failled to notice it)
+  added remark that makepackage is deprecated, use makesourcepackage
+dphys2 root disk option to autoinstall dphys2-swap package
+  setup-dphys2 option,  makeroot copy into root image
+  dbootstrap copy into target system and install base-config script
+    dropped use of SWAP_TYPE variable, directly use CONF_SWAP_SIZE
+  base-config script install package using  dpkg --install
+    for this endfirstrun SYS_BASECONF_DIR in setup-dphys2, for dbootstrap also
+      same with DEBUG_LEAVE_SCRIPTS, renamed to DEBUG_LEAVE_BC_SCRIPTS
+    enfirstrun eliminate last CONF_* variable, direct in code, simpler
+
+2003.11.14 Fri
+dphys2 autoinstall dphys2-swap package finished additions
+
+2003.11.20 Thu
+dphys2-swapfile fixed init.d script bug, missing output redirect to /dev/null
+dphys2-swapfile added an example config file in /etc/default/dphys2-swapfile
+  extended makesourcepackage to install such an config if existant
+  testing noticed init.d start when already running gives swapon error
+    same on init.d stop if not still running, or on deconfig, correct this
+  changes to use variable names CONF_SWAPFILE and CONF_SWAPSIZE
+CVS deleted old dphys-swapfile stuff, package also gone, and no use any more
+setup-dphys2 option dphys2-swapfile tidy up code in dbootstrap
+  put entire part that works in /target in subshell ( chroot /target ... )
+
+2003.11.27 Thu
+dphys2-swapfile still messes up output, with "Adding Swap: ... (priority -1)"
+  between the  keeping it  and  , done.  outputs from init.d script
+  test swapoff/swapon has no such output, but it appears on the console
+    is kernel -> klogd -> syslogd which is doing this, no option, leave it
+
+2003.12.04 Thu
+swapfile syslog output cannot be prevented, so finish our line before syslog
+
+2004.02.19 Thu
+dphys2 release 4th milestone, copy to ../dphys2-20040219, make tar file of it
+
+2004.05.14 Fri
+convert dphys2-swapfile to new dh_* based makesourcepackage
+  updated Makefile preset variables, debian/control added Build debhelper
+  rm debian/conffiles (was auto-generated anyway)
+  mv default dphys2-swapfile.default, changed it to normal hand edited, not gen
+  mv init.d dphys2-swapfile.init, removed automatic modifications, hand edited
+  rm debian/postinst (will be generated), prerm (same)
+  postrm changed to include #DEBHELPER#, and only mod fstab and del swapfile
+    CONF_SWAPFILE as variable, even if set only here, not by /etc/default/*
+    renamed to debian/<packagename>.postrm, man dh_installdb incomprehensible
+  generated new style debian/rules file, so ready to package
+
+2004.05.27 Thu
+dphys2-swapfile heeb file should not be 644, can have root processes in it
+  added an chmod 600 to start), while at it uninstall) in init.d script
+  init.d script, default, postrm comments updated, made package and uploaded it
+
+2004.05.28 Fri
+dphys2-swapfile separate project, as only replacing swappartit, not installing
+  rename it into dphys-swapfile, no 2 as not part of dphys2 any more
+made FAQ, INSTALL, (this) Logfile, Makefile add tar stuff, new own README
+  debian dir, rename files and names in them
+  index.html.en, linked from projects and startup page
+  make tar, generating standard .tar.gz file
+packaged, (re-)generating .dsc, debianised .tar.gz and .deb files
+  no new m akesourcepackage -l  yet, as release most likely next week
+  index.html.en link to also to the package stuff, still old number
+    dito also in FAQ and INSTALL remarks which is newest package version
+
+2004.06.03 Thu
+renaming makes this package replace old name package
+  heeb policy discussion, no Conflicts:/Provides:/Replaces: in control
+    simply  - dphys2-swapfile  + dphys-swapfile in main-pkglist
+    worst case if no swapoff possible 2nd nameless swap remains until reboot
+init script added full paths to all programs, so path/pwd independant
+split init script, most in main dir (/sbin/), only call in debian (/etc/init.d)
+  updated Makefile to package it, and index.html.en to show this
+  also Makefile code to install it, independant from Debian part
+delete swapfile moved from postrm to prerm, when script and config still exists
+  so it can use /sbin script (with uninstall), and config stuff used by that
+  user who removes and reinstalls package will have to regenerate swapfile
+    config as such is not lost, and that is then auto-deleted when purge
+
+2004.06.04 Fri
+wrote man page for /sbin Script, added to Makefile
+in swapon and uninstall added test for file, in swapon error if not present
+improved docs with better description of reason for own swapon/off
+added  makesourcepackage -l  with descriptions, change all references
+CVS remove dphys-admin, commit, update, this time it really is gone
+
+2004.06.11 Fri
+bug in config file reading, fixed
+
+2004.07.21 Wed
+index.html.en added man page
+
+2004.07.29 Thu
+improved docs, INSTALL show what steps need to be done, i.e. are important
+created debian/dphys-swapfile.docs, with README, FAQ, index.html.en
+
+------ project status
+
+doing:
+release 5th milestone, copy to ../dphys-swapfile-20040729, make tar file of it
+  modify index.html and FAQ and INSTALL to show the milestone release
+  start new RCS archive with revision 5.0 (unchanged milestone 5)
+  redo ../dphys2.tar.gz tar archive of current state
+re-package debian, -l "added docs, new upstream milestone"
+  update FAQ, INSTALL and index.html.en with 20040729.142747 version number
+
+todo:
+
+possible extensions:

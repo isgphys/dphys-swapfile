@@ -1,0 +1,62 @@
+.\" /usr/share/man/man8/dphys-swapfile.8(.gz)
+.\" author Neil Franklin, last modification 2004.06.04
+.\" copyright ETH Zuerich Physics Deparement, use under either BSD or GPL license
+
+.TH DPHYS-SWAPFILE 8 "2004.06.04" "D-Phys Swapfile Tools"
+
+.SH NAME
+
+dphys-swapfile \- set up, mount/unmount, and delete an swap file
+
+.SH SYNOPSIS
+
+.B dphys-swapfile
+\fIsetup\fP|\fIswapon\fP|\fIswapoff\fP|\fIuninstall\fP
+
+.SH DESCRIPTION
+
+dphys-swapfile computes the size for an optimal swap file, resizes an existing
+swap file if neccessary, mounts it, unmounts it, and deletes it if not wanted
+any more.
+
+.SH OPTIONS
+
+One parameter can be either \fIsetup\fP or \fIswapon\fP or \fIswapoff\fP or
+\fIuninstall\fP, depending on what operation is desired.
+.PP
+\fIsetup\fP tells dphys-swapfile to compute the optimal swap file size (2 times
+RAM size) and (re-)generates the fitting file. This can be called at boot time,
+so the file stays the right size for current RAM.
+.PP
+\fIswapon\fP and \fIswapoff\fP run the same named commands on the swapfile.
+Note that direct swapon/off from \fI/etc/fstab\fP is not possible, as that is
+(at least on Debian) done in the same script that mounts /var. We need to do
+our setup between those actions. So pass up \fI/etc/fstab\fP, do setup, and
+then our self do swapon/off.
+.PP
+\fIuninstall\fP gets rid of an unwanted swap file, reclaiming the disk space.
+
+.SH CONFIG
+
+\fI/etc/default/dphys-swapfile\fP (Debian style) or \fI/etc/dphys-swapfile\fP
+(normal style) allows the user to set up the working environment for
+dphys-swapfile. This is a sh script fragment, which gets sourced.
+.PP
+\fICONF_SWAPFILE\fP: set where the file should be placed
+.PP
+\fICONF_SWAPSIZE\fP: force file size to this, do not compute
+
+.SH FILES
+
+\fI$CONF_SWAPFILE\fP (defaults to \fI/var/swap\fP)
+the swap file, target of the whole action
+.TP 5
+\fI/etc/default/dphys-swapfile\fP
+Debian style user config
+.TP 5
+\fI/etc/dphys-swapfile\fP
+normal style user config
+
+.SH AUTHOR
+
+franklin@phys.ethz.ch, http://www.phys.ethz.ch/~franklin/

@@ -1,0 +1,117 @@
+<html>
+  <!--http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile/index.html.en-->
+  <head>
+    <title>dphys-swapfile setup/mount script</title>
+    <meta name="keywords"
+      content="neil franklin, ETH, dphys-swapfile, setup script">
+    <meta name="description"
+      content="dphys-swapfile setup/mount script">
+  </head>
+  <body>
+    <a href="../../index.html.en">Home</a> |
+    <a href="../index.html.en">Projects</a> | dphys-swapfile
+
+    <hr>
+
+
+    <h2>dphys-swapfile Setup/Mount Script</h2>
+
+    <a href="#basics">Project Basics</a><br>
+    <a href="#status">Project Status</a><br>
+    <a href="#download">Code Download</a><br>
+    <a href="#links">External Stuff (Links)</a><br>
+
+
+    <a name=basics></a>
+    <h3>Project Basics</h3>
+
+    This project is aimed at using an swap file on our Linux systems. We want
+    to be able to generate an RAM size dependant swap file in /var.
+    <p>
+    This project has produced an <a href="dphys-swapfile">dphys-swapfile</a>
+    script for sizing, setting up and mounting an swap file. And an
+    <a href="debian/dphys-swapfile.init">init.d script</a> that runs this
+    script, together with an Debian packaging of the whole lot.
+    <p>
+    This project was spawned from the
+    <a href="http://www.phys.ethz.ch/~franklin/Projects/dphys2/">dphys2
+    project</a>.
+
+
+    <a name=status></a>
+    <h3>Project Status</h3>
+
+    For the full details of done/doing/todo of the project best read the
+    <a href="Logfile">Logfile</a>. A short excerpt from it is here:
+    <p>
+    <h4>Done are:</h4>
+    dphys2 Milestone 4 (2004.02.19), implement swapfile and custom kernels:
+    <ul>
+      <li>Made an <a href="dphys-swapfile">dphys-swapfile</a> package to
+        automatically generate/activate/resize an swapfile, default 2*RAM size,
+        and also deactivate/delete it at the approriate time</li>
+    </ul>
+    Current (= development, = may be broken):
+    <ul>
+      <li>Split out of dphys2 into an separate project, as these tools are
+        also usefull without dphys2</li>
+      <li>Repackaged as separate working and init.d scripts</li>
+    </ul>
+    <h4>Todo are:</h4>
+    <ul>
+      <li>Nothing planned</li>
+    </ul>
+
+
+    <a name=download></a>
+    <h3>Code Download</h3>
+
+    Current (= development, = may be broken):
+    <ul>
+      <li><a href="INSTALL">Installation Guide</a></li>
+      <li>entire project: <a href="../dphys-swapfile.tar.gz">
+        dphys-swapfile.tar.gz</a></li>
+      <li>single files:<ul>
+        <li><a href="Makefile">Makefile</a>, control process</li>
+        <li><a href="dphys-swapfile">dphys-swapfile</a>,
+          size/setup/mount/delete swap file script</li>
+        <li><a href="dphys-swapfile.8">dphys-swapfile.8</a>, man page for
+          dphys-swapfile</li>
+      </ul></li>
+      <li>Debian packaged:<ul>
+        <li><a href="../dphys-swapfile_20040611.145856-1.dsc">
+          .dsc description file</a></li>
+        <li><a href="../dphys-swapfile_20040611.145856-1.tar.gz">
+          debianised .tar.gz source archive</a></li>
+        <li><a href="../dphys-swapfile_20040611.145856-1_all.deb">
+          .deb package</a></li>
+      </ul></li>
+    </ul>
+    dphys2 Milestone 4 (2004.02.19):
+    <ul>
+      <li><a href="../dphys2-20040219/dphys2-swapfile_20031204.141601-1.deb">dphys2-swapfile package</a>, generate/activate/update swap file with its
+        <a href="../dphys2-20040219/dphys2-swapfile_20031204.141601-1.dsc">
+        dsc file</a> and <a href="../dphys2-20040219/dphys2-swapfile_20031204.141601-1.tar.gz">source archive</a></li>
+    </ul>
+
+
+    <a name=links></a>
+    <h3>External Stuff (Links)</h3>
+
+    Various links that may be usefull:
+    <ul>
+      <li><a href="http://www.debian.org/">Debian main site</a></li>
+      <li><a href="http://debian.ethz.ch/">Our Debian mirror</a></li>
+      <li><a href="http://www.phys.ethz.ch/~franklin/Projects/dphys2/">
+        dphys2 project this project was spawned from</a></li>
+    </ul>
+
+
+    <hr>
+
+    <a href="../../index.html.en">Home</a> |
+    <a href="../index.html.en">Projects</a> | dphys-swapfile
+    <p>
+    This page is by Neil Franklin, last modification 2004.07.29
+  </body>
+</html>
