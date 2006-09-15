@@ -1,8 +1,8 @@
 # http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile/Makefile
 # author/generator dphys2 makesrcpackage script - expanded by Neil Franklin,
-#   last modification/generation 2004.06.04
-# This Makefile is copyright ETH Zuerich Physics Departement,
-#   use under either BSD or GPL license
+#   last modification/generation 2006.09.15
+# This Makefile is copyright ETH Zuerich Physics Departement
+#   use under either modified/non-advertising BSD or GPL license
 
 # --- various site dependant user config variables
 
@@ -12,13 +12,17 @@ DIR = dphys-swapfile
 
 # --- no user configurable stuff below here
 
-# use RPREFIX as not in /usr, this is early start up stuff
-RPREFIX = $(DESTDIR)
-PREFIX  = $(RPREFIX)/usr
-BINDIR  = $(RPREFIX)/bin
-SBINDIR = $(RPREFIX)/sbin
+PREFIX  = $(DESTDIR)/usr
+BINDIR  = $(PREFIX)/bin
+SBINDIR = $(PREFIX)/sbin
 MAN1DIR = $(PREFIX)/share/man/man1
 MAN8DIR = $(PREFIX)/share/man/man8
+DOCDIR  = $(PREFIX)/share/doc/dphys-swapfile
+EXADIR  = $(DOCDIR)/examples
+
+# use R_PREFIX (root prefix) as not in /usr, this is early run start up stuff
+R_PREFIX  = $(DESTDIR)
+R_SBINDIR = $(R_PREFIX)/sbin
 
 
 # --- code for acting out the various  make  targets
@@ -32,14 +36,24 @@ clean:
 distclean: clean
 
 install:
-	@/bin/mkdir -p $(SBINDIR)
-	@/bin/cp -p dphys-swapfile $(SBINDIR)
+	@/bin/mkdir -p $(R_SBINDIR)
+	@/bin/cp -p dphys-swapfile       $(R_SBINDIR)
+
 	@/bin/mkdir -p $(MAN8DIR)
-	@/bin/cp -p dphys-swapfile.8.gz $(MAN8DIR)
+	@/bin/cp -p dphys-swapfile.8.gz  $(MAN8DIR)
+
+	@/bin/mkdir -p $(EXADIR)
+	@/bin/cp -p dphys-swapfile.example  $(EXADIR)
+	@/bin/cp -p init.d.example          $(EXADIR)
 
 uninstall:
-	@/bin/rm -f $(SBINDIR)/dphys-swapfile
+	@/bin/rm -f $(EXADIR)/init.d.example
+	@/bin/rm -f $(EXADIR)/dphys-config.example
+	@/bin/rmdir $(EXADIR)
+
 	@/bin/rm -f $(MAN8DIR)/dphys-swapfile.8.gz
+
+	@/bin/rm -f $(R_SBINDIR)/dphys-swapfile
 
 
 # --- project management stuff
@@ -52,4 +66,5 @@ tar:
 	@(cd ..; /bin/tar zcf $(DIR).tar.gz \
 	  $(DIR)/FAQ $(DIR)/INSTALL $(DIR)/Logfile $(DIR)/Makefile \
 	  $(DIR)/README $(DIR)/dphys-swapfile $(DIR)/dphys-swapfile.8 \
-	  $(DIR)/index.html.de $(DIR)/index.html.en )
+	  $(DIR)/dphys-swapfile.example $(DIR)/index.html.de \
+	  $(DIR)/index.html.en $(DIR)/init.d.example )

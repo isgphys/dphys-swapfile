@@ -1,8 +1,9 @@
 .\" /usr/share/man/man8/dphys-swapfile.8(.gz)
-.\" author Neil Franklin, last modification 2004.06.04
-.\" copyright ETH Zuerich Physics Deparement, use under either BSD or GPL license
+.\" author Neil Franklin, last modification 2006.09.15
+.\" copyright ETH Zuerich Physics Departement
+.\"   use under either modified/non-advertising BSD or GPL license
 
-.TH DPHYS-SWAPFILE 8 "2004.06.04" "D-Phys Swapfile Tools"
+.TH DPHYS-SWAPFILE 8 "2006.09.15" "D-PHYS Swapfile Tools"
 
 .SH NAME
 
@@ -11,51 +12,93 @@ dphys-swapfile \- set up, mount/unmount, and delete an swap file
 .SH SYNOPSIS
 
 .B dphys-swapfile
-\fIsetup\fP|\fIswapon\fP|\fIswapoff\fP|\fIuninstall\fP
+\fBsetup\fP|\fBswapon\fP|\fBswapoff\fP|\fBuninstall\fP
 
 .SH DESCRIPTION
 
-dphys-swapfile computes the size for an optimal swap file, resizes an existing
-swap file if neccessary, mounts it, unmounts it, and deletes it if not wanted
-any more.
+dphys-swapfile computes the size for an optimal swap file (and resizes an
+existing swap file if neccessary), mounts an swap file, unmounts it, and and
+delete it if not wanted any more.
 
 .SH OPTIONS
 
-One parameter can be either \fIsetup\fP or \fIswapon\fP or \fIswapoff\fP or
-\fIuninstall\fP, depending on what operation is desired.
-.PP
-\fIsetup\fP tells dphys-swapfile to compute the optimal swap file size (2 times
-RAM size) and (re-)generates the fitting file. This can be called at boot time,
-so the file stays the right size for current RAM.
-.PP
-\fIswapon\fP and \fIswapoff\fP run the same named commands on the swapfile.
-Note that direct swapon/off from \fI/etc/fstab\fP is not possible, as that is
-(at least on Debian) done in the same script that mounts /var. We need to do
-our setup between those actions. So pass up \fI/etc/fstab\fP, do setup, and
-then our self do swapon/off.
-.PP
-\fIuninstall\fP gets rid of an unwanted swap file, reclaiming the disk space.
+There is only one parameter, an command, which can be either of these:
+.TP
+.B setup
+Tells dphys-swapfile to compute the optimal swap file size and (re-)generate
+an fitting swap file. Default it 2 times RAM size. This can be called at boot
+time, so the file allways stays the right size for current RAM, or run by hand
+whenever RAM size has changed.
+.TP
+.B swapon
+and
+.B swapoff
+These run the \fIswapon \fPand \fIswapoff\fP commands on the swapfile. Note
+that direct swapon/off from \fI/etc/fstab\fP is not possible, as that is (at
+least on Debian) done in the same script that mounts /var (which is where the
+swap file most likely resides). And we need to do our setup between those
+actions. So pass up \fI/etc/fstab\fP, and do our own swapon/off.
+.TP
+.B uninstall
+Gets rid of an unwanted swap file, reclaiming the disk space.
 
 .SH CONFIG
 
-\fI/etc/default/dphys-swapfile\fP (Debian style) or \fI/etc/dphys-swapfile\fP
-(normal style) allows the user to set up the working environment for
-dphys-swapfile. This is a sh script fragment, which gets sourced.
+The config file \fI/etc/dphys-swapfile\fP allows the user to set up the
+working environment for dphys-swapfile.
 .PP
-\fICONF_SWAPFILE\fP: set where the file should be placed
-.PP
-\fICONF_SWAPSIZE\fP: force file size to this, do not compute
+This config file is a sh script fragment full of assignments, which is
+sourced. Standard sh syntax rules apply. Assignments are:
+.TP
+.B CONF_SWAPFILE
+Set where the swap file should be placed. Defaults to /var/swap. It is unlikely
+that you will need to change this, unless you have very strange partitioning,
+and then you will most likely be using an swap partition anyway.
+.TP
+.B CONF_SWAPSIZE
+Force file size to this. Default is 2*RAM size. This is unlikely to be needed,
+unless in strange diskspace situations. Note that swap enabled and smaller
+than RAM causes kernal-internal VM trouble on random systems.
 
 .SH FILES
 
-\fI$CONF_SWAPFILE\fP (defaults to \fI/var/swap\fP)
-the swap file, target of the whole action
-.TP 5
-\fI/etc/default/dphys-swapfile\fP
-Debian style user config
-.TP 5
-\fI/etc/dphys-swapfile\fP
-normal style user config
+.TP
+.B /etc/dphys-swapfile
+user config
+.TP
+.B $CONF_SWAPFILE
+the swap file, target of the whole action (defaults to \fI/var/swap\fP)
+
+.SH EXAMPLES
+
+dphys-swapfile is usually run at system startup and shutdown from an
+/etc/init.d (or /etc/rc.d) script, such as this (minimal) one:
+.PP
+.nf
+#!/bin/sh\!
+# /etc/init.d/dphys-swapfile \- automatically set up an swapfile\!
+# author franklin, last modification 2004.06.04\!
+# This script is copyright ETH Zuerich Physics Departement,\!
+#   use under either modified/non-advertising BSD or GPL license\!
+case "$1" in\!
+  start)\!
+    /sbin/dphys-swapfile setup\!
+    /sbin/dphys-swapfile swapon\!
+    ;;\!
+  stop)\!
+    /sbin/dphys-swapfile swapoff\!
+    ;;\!
+esac\!
+exit 0\!
+.fi
+.PP
+If an sysadmin wants to have his swapfile in annother place, say /var/run/swap,
+he can use:
+.PP
+In \fI/etc/dphys-swapfile\fP:
+.PP
+CONF_SWAPFILE=/var/run/swap
+
 
 .SH AUTHOR
 

@@ -1,6 +1,7 @@
 http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile/Logfile - done, to do
-copyright ETH Zuerich Physics Departement, use under either BSD or GPL license
 author Neil Franklin, last modification see last entry near bottom
+copyright ETH Zuerich Physics Departement
+  use under either modified/non-advertising BSD or GPL license
 
 background is the dphys2 project, read its Logfile at:
   http://www.phys.ethz.ch/~franklin/Projects/dphys2/Logfile
@@ -37,6 +38,8 @@ make package dphys-swapfile to set up and later resize existing swap file
     also limit to max 2G kernel limit
   script is an init.d, will start on reboot, also run once on pkg install
   added --purge to drop swapfile from fstab, swapoff, rm
+packaged version 20030815.175513-1, changelog:
+  "auto-generated release from versionless (=current) upstream"
 
 2003.10.03 Fri
 convert existing binary packages to using makesourcepackage
@@ -70,7 +73,8 @@ dphys2-swap init.d makesourcepackage  to modify/generate postinst and postrm
   makesourcepackage rules file call to execute this section
 dphys2-swap upload to package server, apt-get update and install, OK
   stop and start, OK, remove and install, OK, purge and install, OK
-  rebuild package with newer version number, apt-get update and upgrade, OK
+packaged version 20031107.173603-1, changelog:
+  "ported to makesourcepackage, fixed runlevel"
 
 2003.11.13 Thu
 deleted old dphys-swapfile package from server, only in use on my home machines
@@ -99,6 +103,12 @@ dphys2-swapfile added an example config file in /etc/default/dphys2-swapfile
 CVS deleted old dphys-swapfile stuff, package also gone, and no use any more
 setup-dphys2 option dphys2-swapfile tidy up code in dbootstrap
   put entire part that works in /target in subshell ( chroot /target ... )
+packaged version 20031120.124554-1, changelog:
+  "fixed init.d start output redirect bug"
+packaged version 20031120.135304-1, changelog:
+  "added /etc/default example config file"
+packaged version 20031120.142404-1, changelog:
+  "fixed init.d dual start|stop swapon|off error message"
 
 2003.11.27 Thu
 dphys2-swapfile still messes up output, with "Adding Swap: ... (priority -1)"
@@ -108,6 +118,8 @@ dphys2-swapfile still messes up output, with "Adding Swap: ... (priority -1)"
 
 2003.12.04 Thu
 swapfile syslog output cannot be prevented, so finish our line before syslog
+packaged version 20031204.141601-1, changelog:
+  "no makesourcepackage stuff in init.d, separate script"
 
 2004.02.19 Thu
 dphys2 release 4th milestone, copy to ../dphys2-20040219, make tar file of it
@@ -128,6 +140,8 @@ convert dphys2-swapfile to new dh_* based makesourcepackage
 dphys2-swapfile heeb file should not be 644, can have root processes in it
   added an chmod 600 to start), while at it uninstall) in init.d script
   init.d script, default, postrm comments updated, made package and uploaded it
+packaged version 20040527.143106-1, changelog:
+  "change to using dh_* based source package"
 
 2004.05.28 Fri
 dphys2-swapfile separate project, as only replacing swappartit, not installing
@@ -137,7 +151,7 @@ made FAQ, INSTALL, (this) Logfile, Makefile add tar stuff, new own README
   index.html.en, linked from projects and startup page
   make tar, generating standard .tar.gz file
 packaged, (re-)generating .dsc, debianised .tar.gz and .deb files
-  no new m akesourcepackage -l  yet, as release most likely next week
+  no new makesourcepackage -l  yet, as release most likely next week
   index.html.en link to also to the package stuff, still old number
     dito also in FAQ and INSTALL remarks which is newest package version
 
@@ -161,9 +175,13 @@ in swapon and uninstall added test for file, in swapon error if not present
 improved docs with better description of reason for own swapon/off
 added  makesourcepackage -l  with descriptions, change all references
 CVS remove dphys-admin, commit, update, this time it really is gone
+packaged version 20040604.142815-1, changelog:
+  "separate project, renamed, separate action/init, delete in prerm"
 
 2004.06.11 Fri
 bug in config file reading, fixed
+packaged version 20040611.145856-1, changelog:
+  "fixed config file reading bug"
 
 2004.07.21 Wed
 index.html.en added man page
@@ -171,16 +189,61 @@ index.html.en added man page
 2004.07.29 Thu
 improved docs, INSTALL show what steps need to be done, i.e. are important
 created debian/dphys-swapfile.docs, with README, FAQ, index.html.en
+release 5th milestone, copy to ../dphys-swapfile-20040729, make tar file of it
+  modifed index.html and FAQ and INSTALL to show the milestone release
+  redo ../dphys-swapfile.tar.gz tar archive of current state
+packaged version 20040729.164251-1, changelog:
+  "added docs, new upstream milestone"
+
+2004.08.27 Fri
+man pages expand explanation, added examples of use section
+  showing typical usage, including an minimal example init.d script
+change copyright remarks to mention modified/non-advertising BSD
+packaged version 20040827.135743-1, changelog:
+  "expanded man page"
+
+2005.04.21 Thu
+checked up that this package has no woody dependencies, will run under sarge
+  not really surprising, as it also runs OK on my personal slackware systems
+  as no needed changes, leave the slight problem with /etc/default unchanged
+  imported this package into local sarge package server
+
+2006.08.11 Fri
+added all "packaged version ????????.??????-?, changelog:" lines
+
+2006.09.15 Fri
+get ready for publication as an official Debian Linux ?.? (etch) package
+  all actions here analog to everything done in dphys-config
+  reworked and updated documentation, FAQ, INSTALL, README, index.html.en
+  senguen wanst to make own debian/* as lintian complains about native package
+    looked into any information lost if deleting debian/* to avoid collision
+  debian/changelog is all info duplicated in this Logfile, deleted it
+  debian/control is just docu text, add to other docs, README and index.html.en
+  debian/copyright is nearly same as in README, updated that
+  debian/dphys-swapfile.default moved to dphys-swapfile.example
+    changed code and man page to reflect no /etc/default/* any more
+    will also install into /usr/share/doc/examples and not /etc/default
+      was already on "todo" since 2005.04.21 entry up above
+  debian/dphys-swapfile.docs is nothing, deleted it
+  debian/dphys-swapfile.init is simple example, move to main dir
+    add to Makefile installation into examples directory
+  debian/dphys-swapfile.prerm notified senguen what he needs to do, deleted it
+  debian/rules has nothing specific, deleted it
+  as only producing an "upstream" and senguen doing "maintainer" version
+    remove FAQ and INSTALL and index.html.en references to my old packages
+bug source check possibility of  cut -f 2-  or similar where no delimitors
+bug source check  echo "${blah}"  against possible  *  or similar ${blah} data
+better bug discovery addition  set -e
+changed code to read in config file only once, no after computation overwrite
+released 6th (and 2nd feature completed, just repackaged and fixes) milestone
+  modified index.html and FAQ and INSTALL to show the milestone release
+  no Debian packaging any more, senguen does this now, no changelog entry
+  copy to ../dphys-swapfile-20060915, made tar file of that
+  remade ../dphys-swapfile.tar.gz archive for current state
 
 ------ project status
 
 doing:
-release 5th milestone, copy to ../dphys-swapfile-20040729, make tar file of it
-  modify index.html and FAQ and INSTALL to show the milestone release
-  start new RCS archive with revision 5.0 (unchanged milestone 5)
-  redo ../dphys2.tar.gz tar archive of current state
-re-package debian, -l "added docs, new upstream milestone"
-  update FAQ, INSTALL and index.html.en with 20040729.142747 version number
 
 todo:
 

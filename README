@@ -1,15 +1,17 @@
 http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile/README
-author Neil Franklin, last modification 2004.06.03
-This text (and all other files) are copyright ETH Zuerich Physics Departement,
-  use under either BSD or GPL license
+author Neil Franklin, last modification 2006.09.15
+This text (and all dphys-swapfile) copyright ETH Zuerich Physics Departement
+  use under either modified/non-advertising BSD or GPL license
 
 Introduction to dphys-swapfile setup/mount script
 
 
 Aim
 
-This program is aimed at using an automatically (re-)sized swapfile instead
-of an fixed size (from partitioning) swap partition
+This program is aimed at using an automatically installed and RAM size
+dependant (re-)sized swap file instead of an fixed size (from partitioning)
+swap partition. Install the system without an swap partition and then install
+and run this.
 
 
 Preconditions

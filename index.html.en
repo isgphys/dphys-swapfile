@@ -3,7 +3,7 @@
   <head>
     <title>dphys-swapfile setup/mount script</title>
     <meta name="keywords"
-      content="neil franklin, ETH, dphys-swapfile, setup script">
+      content="neil franklin, ETH, dphys-swapfile, Linux, swap file">
     <meta name="description"
       content="dphys-swapfile setup/mount script">
   </head>
@@ -26,16 +26,16 @@
     <h3>Project Basics</h3>
 
     This project is aimed at using an swap file on our Linux systems. We want
-    to be able to generate an RAM size dependant swap file in /var.
+    to be able to generate an RAM size dependant swap file in /var, instead of
+    using an fixed sized swap partition. And automatically regenerate the swap
+    file it RAM size changes, to fit the new size.
     <p>
     This project has produced an <a href="dphys-swapfile">dphys-swapfile</a>
     script for sizing, setting up and mounting an swap file. And an
-    <a href="debian/dphys-swapfile.init">init.d script</a> that runs this
-    script, together with an Debian packaging of the whole lot.
+    <a href="init.d.example">init.d script</a> that runs this script at boot
+    and shutdown time.
     <p>
-    This project was spawned from the
-    <a href="http://www.phys.ethz.ch/~franklin/Projects/dphys2/">dphys2
-    project</a>.
+    This project was spawned from the <a href="../dphys2/">dphys2</a> project.
 
 
     <a name=status></a>
@@ -45,17 +45,29 @@
     <a href="Logfile">Logfile</a>. A short excerpt from it is here:
     <p>
     <h4>Done are:</h4>
-    dphys2 Milestone 4 (2004.02.19), implement swapfile and custom kernels:
+    Milestone/Release 4 (2004.02.19):
     <ul>
-      <li>Made an <a href="dphys-swapfile">dphys-swapfile</a> package to
-        automatically generate/activate/resize an swapfile, default 2*RAM size,
-        and also deactivate/delete it at the approriate time</li>
+      <li>As part of
+        <a href="../dphys2/">dphys2</a>. Made
+        <a href="dphys-swapfile">dphys-swapfile</a> script to automatically
+        generate/activate/resize an swapfile, default 2*RAM size, and also
+        deactivate/delete it at the approriate time</li>
     </ul>
-    Current (= development, = may be broken):
+    Milestone/Release 5 (2004.07.29):
     <ul>
       <li>Split out of dphys2 into an separate project, as these tools are
         also usefull without dphys2</li>
-      <li>Repackaged as separate working and init.d scripts</li>
+      <li>Reworked as separate /sbin and /etc/init.d scripts</li>
+    </ul>
+    Milestone/Release 6 (2006.09.15):
+    <ul>
+      <li>Repackaged as separate non-debianised upstream for later
+        debianisation by separate maintainer</li>
+      <li>Slight code and documentation improvements</li>
+    </ul>
+    Current (= development, = may be broken):
+    <ul>
+      <li>Nothing done</li>
     </ul>
     <h4>Todo are:</h4>
     <ul>
@@ -68,31 +80,63 @@
 
     Current (= development, = may be broken):
     <ul>
-      <li><a href="INSTALL">Installation Guide</a></li>
+      <li><a href="INSTALL">
+        Installation Guide</a></li>
       <li>entire project: <a href="../dphys-swapfile.tar.gz">
         dphys-swapfile.tar.gz</a></li>
       <li>single files:<ul>
-        <li><a href="Makefile">Makefile</a>, control process</li>
-        <li><a href="dphys-swapfile">dphys-swapfile</a>,
-          size/setup/mount/delete swap file script</li>
-        <li><a href="dphys-swapfile.8">dphys-swapfile.8</a>, man page for
-          dphys-swapfile</li>
-      </ul></li>
-      <li>Debian packaged:<ul>
-        <li><a href="../dphys-swapfile_20040611.145856-1.dsc">
-          .dsc description file</a></li>
-        <li><a href="../dphys-swapfile_20040611.145856-1.tar.gz">
-          debianised .tar.gz source archive</a></li>
-        <li><a href="../dphys-swapfile_20040611.145856-1_all.deb">
-          .deb package</a></li>
+        <li><a href="Makefile">
+          Makefile</a>, control process</li>
+        <li><a href="dphys-swapfile">
+          dphys-swapfile</a>, size/setup/mount/delete swap file script</li>
+        <li><a href="dphys-swapfile.8">
+          dphys-swapfile.8</a>, man page for dphys-swapfile</li>
+        <li><a href="dphys-swapfile.example">
+          dphys-swapfile.example</a>, example config file, containing only the
+          default settings as comments, to adapt to your site</li>
+        <li><a href="init.d.example">
+          init.d.example</a>, example init.d script to run dphys-swapfile every
+          boot and shutdown, to resize/swapon and swapoff</li>
       </ul></li>
     </ul>
-    dphys2 Milestone 4 (2004.02.19):
+    Milestone/Release 6 (2006.09.15):
+      <li><a href="../dphys-swapfile-20060915/INSTALL">
+        Installation Guide</a></li>
+      <li>entire project: <a href="../dphys-swapfile-20060915.tar.gz">
+        dphys-swapfile-20060915.tar.gz</a></li>
+      <li>single files:<ul>
+        <li><a href="../dphys-swapfile-20060915/Makefile">
+          Makefile</a>, control process</li>
+        <li><a href="../dphys-swapfile-20060915/dphys-swapfile">
+          dphys-swapfile</a>, size/setup/mount/delete swap file script</li>
+        <li><a href="../dphys-swapfile-20060915/dphys-swapfile.8">
+          dphys-swapfile.8</a>, man page for dphys-swapfile</li>
+        <li><a href="../dphys-swapfile-20060915/dphys-swapfile.example">
+          dphys-swapfile.example</a>, example config file, containing only the
+          default settings as comments, to adapt to your site</li>
+        <li><a href="../dphys-swapfile-20060915/init.d.example">
+          init.d.example</a>, example init.d script to run dphys-swapfile every
+          boot and shutdown, to resize/swapon and swapoff</li>
+      </ul></li>
+    </ul>
+    Milestone/Release 5 (2004.07.29):
     <ul>
-      <li><a href="../dphys2-20040219/dphys2-swapfile_20031204.141601-1.deb">dphys2-swapfile package</a>, generate/activate/update swap file with its
-        <a href="../dphys2-20040219/dphys2-swapfile_20031204.141601-1.dsc">
-        dsc file</a> and <a href="../dphys2-20040219/dphys2-swapfile_20031204.141601-1.tar.gz">source archive</a></li>
+      <li><a href="../dphys-swapfile-20040729/INSTALL">
+        Installation Guide</a></li>
+      <li>entire project: <a href="../dphys-swapfile-20040729.tar.gz">
+        dphys-swapfile-20040729.tar.gz</a></li>
+      <li>single files:<ul>
+        <li><a href="../dphys-swapfile-20040729/Makefile">
+          Makefile</a>, control process</li>
+        <li><a href="../dphys-swapfile-20040729/dphys-swapfile">
+          dphys-swapfile</a>, size/setup/mount/delete swap file script</li>
+        <li><a href="../dphys-swapfile-20040729/dphys-swapfile.8">
+          dphys-swapfile.8</a>, man page for dphys-swapfile</li>
+      </ul></li>
     </ul>
+    Milestone/Release 4 (2004.02.19) was done as part of:
+    <a href="../dphys2/">dphys2</a>. Milestones/Releases 1-3 of dphys2 predate
+    dphys-swapfile.
 
 
     <a name=links></a>
@@ -100,8 +144,6 @@
 
     Various links that may be usefull:
     <ul>
-      <li><a href="http://www.debian.org/">Debian main site</a></li>
-      <li><a href="http://debian.ethz.ch/">Our Debian mirror</a></li>
       <li><a href="http://www.phys.ethz.ch/~franklin/Projects/dphys2/">
         dphys2 project this project was spawned from</a></li>
     </ul>
@@ -112,6 +154,6 @@
     <a href="../../index.html.en">Home</a> |
     <a href="../index.html.en">Projects</a> | dphys-swapfile
     <p>
-    This page is by Neil Franklin, last modification 2004.07.29
+    This page is by Neil Franklin, last modification 2006.09.15
   </body>
 </html>

@@ -1,8 +1,22 @@
 #! /bin/sh
 # /sbin/dphys-swapfile - automatically set up an swapfile
-# author franklin, last modification 2004.06.11
+# author Neil Franklin, last modification 2006.09.15
 # This script is copyright ETH Zuerich Physics Departement,
 #   use under either BSD or GPL license
+
+### ------ configuration for this site
+
+# where we want the swapfile to be, this is the default
+CONF_SWAPFILE=/var/swap
+
+# size we want to force it to be, default (empty) gives 2*RAM
+CONF_SWAPSIZE=
+
+
+### ------ actual implementation from here on
+# no user settings any more below this point
+
+set -e
 
 # get ready to work
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
@@ -10,23 +24,17 @@ export PATH
 
 # what we are
 NAME=dphys-swapfile
+PNAME=dphys-swapfile
 
 # this is what we want, 2 times RAM size
 SWAPFACTOR=2
 # this is a (outdated?) kernel limit (in MBytes), do not overrun it
 MAXSWAP=2048
 
-# where we want the swapfile to be, this is the default
-CONF_SWAPFILE=/var/swap
-
 # check user config file(s), let user overwride settings, swap file filename
-CONFFILE=/etc/${NAME}
-DCONFFILE=/etc/default/${NAME}
+CONFFILE=/etc/${PNAME}
 if [ -f ${CONFFILE} ] ; then
   . ${CONFFILE}
-fi
-if [ -f ${DCONFFILE} ] ; then
-  . ${DCONFFILE}
 fi
 
 
@@ -35,25 +43,19 @@ case "$1" in
   setup)
     # (re-)size/-generate
 
-    # compute automatic optimal size
-    /bin/echo -n "computing size"
-    # this seems to be the nearest to physical RAM size, lacks about 60k
-    KCORESIZE=`/bin/ls -l /proc/kcore | /usr/bin/awk '{ print $5 }'`
-    # make MBytes which rounded down will be exactly 1 too few, so add 1
-    MEMSIZE=`/usr/bin/expr ${KCORESIZE} / 1048576 + 1`
-    # default, without config file overwriding, swap=2*RAM
-    CONF_SWAPSIZE=`/usr/bin/expr ${MEMSIZE} '*' ${SWAPFACTOR}`
-
-    # re-check user config file(s), so late so can overwrite computed size
-    if [ -f ${CONFFILE} ] ; then
-      . ${CONFFILE}
-    fi
-    if [ -f ${DCONFFILE} ] ; then
-      . ${DCONFFILE}
+    if [ x${CONF_SWAPSIZE} = x ] ; then
+      # compute automatic optimal size
+      /bin/echo -n "computing size, "
+      # this seems to be the nearest to physical RAM size, lacks about 60k
+      KCORESIZE=`/bin/ls -l /proc/kcore | /usr/bin/awk '{ print $5 }'`
+      # make MBytes which rounded down will be exactly 1 too few, so add 1
+      MEMSIZE=`/usr/bin/expr ${KCORESIZE} / 1048576 + 1`
+      # default, without config file overwriding, swap=2*RAM
+      CONF_SWAPSIZE=`/usr/bin/expr ${MEMSIZE} '*' ${SWAPFACTOR}`
     fi
 
     # announce end resulting config
-    /bin/echo -n ": want ${CONF_SWAPFILE}=${CONF_SWAPSIZE}MByte"
+    /bin/echo -n "want ${CONF_SWAPFILE}=${CONF_SWAPSIZE}MByte"
 
     # check for legitimate swap size and restrict to it
     if [ ${CONF_SWAPSIZE} -gt ${MAXSWAP} ] ; then

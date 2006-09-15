@@ -1,6 +1,7 @@
 http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile/INSTALL
-copyright ETH Zuerich Physics Departement, use under either BSD or GPL license
-author Neil Franklin, last modification 2004.07.29
+author Neil Franklin, last modification 2006.09.15
+copyright ETH Zuerich Physics Departement
+  use under either modified/non-advertising BSD or GPL license
 
 To install/config/use dphys-swapfile do the following:
 
@@ -12,39 +13,10 @@ Source install
 
    http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile.tar.gz or
    http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile-<date>.tar.gz
-     where there are none at present, use the "current" above
+     where last milestone/release is <date>=20040729
 
    make
    make install
-
-
-Alternatively:
-
-1. add to your  /etc/apt/sources list:
-
-   deb-src http://debian.ethz.ch/pub/debian-local woody/local main contrib non-free
-
-2. Fetch it with  apt-get source dphys-swapfile
-
-
-Binary install
-==============
-
-1. Download and unpack the .deb package file from:
-
-   http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile_<date>-1_all.deb
-     where last milestone/release is <date>=20040611.145856
-
-2. Install it with  dpkg --install dphys-swapfile_<date>-1_all.deb
-
-
-Alternatively:
-
-1. add to your  /etc/apt/sources list:
-
-   deb http://debian.ethz.ch/pub/debian-local woody/local main contrib non-free
-
-2. Install it with  apt-get install dphys-swapfile
 
 
 Configuration

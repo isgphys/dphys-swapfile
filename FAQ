@@ -1,6 +1,7 @@
 http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile/FAQ
-copyright ETH Zuerich Physics Departement, use under either BSD or GPL license
-author Neil Franklin, last modification 2004.06.03
+author Neil Franklin, last modification 2006.09.15
+copyright ETH Zuerich Physics Departement
+  use under either modified/non-advertising BSD or GPL license
 
 
 Frequently* Asked Questions (FAQ) for the dphys-swapfile project
@@ -21,20 +22,23 @@ A: Because we want to dynamically resize fitting to RAM size, and also want
 
 Q: Why not simply mount from /etc/fstab?
 
-A: Because we can not (re-)size/generate File until /var is mounted
-   and need to do so before swapon, and at least under Debian can not
-   insert our setup code in between them (both in same init script)
+A: Because we can not (re-)size/generate File until /var is mounted and need
+   to do so before swapon, and at least under Debian (and most likely under
+   many others) we can not insert our setup code in between them (both are in
+   then same init.d script)
 
 
-Q: Will this work on my $DISTRIBUTION
+Q: Will this work on my $DISTRIBUTION?
 
-A: The actual script should work with any distribution. It auto-installs
+A: The actual script should work with any Linux distribution. It auto-installs
    everything it needs. And can uninstall all of this, when called with
-   "uninstall" as parameter. The Debian packaging is just for comfort
+   "uninstall" as parameter. It has actually been tested under Debian Linux
+   3.0 (woody) and 3.1 (sarge) and under Slackware 9.1 and 10.0, so it seems
+   to be totally portable
 
 
 Q: Why is this called dphys-swapfile
-
+?
 A: Departement of PHYSics - SWAP FILE script
 
 
@@ -47,10 +51,4 @@ A: The current (read: in edit, sometimes not functional) from:
    Various milestones/releases (read: archives, working) from:
    http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile-<date>/ or:
    http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile-<date>.tar.gz
-     where there are none at present, use the "current"
-
-   Various package releases (read: archives, working) from:
-   http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile_<date>-1.dsc
-   http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile_<date>-1.tar.gz
-   http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile_<date>-1_all.deb
-     where last milestone/release is <date>=20040611.145856
+     where last milestone/release is <date>=20040729
