@@ -28,7 +28,7 @@
     This project is aimed at using an swap file on our Linux systems. We want
     to be able to generate an RAM size dependant swap file in /var, instead of
     using an fixed sized swap partition. And automatically regenerate the swap
-    file it RAM size changes, to fit the new size.
+    file if RAM size changes, to fit the new size.
     <p>
     This project has produced an <a href="dphys-swapfile">dphys-swapfile</a>
     script for sizing, setting up and mounting an swap file. And an
@@ -47,16 +47,15 @@
     <h4>Done are:</h4>
     Milestone/Release 4 (2004.02.19):
     <ul>
-      <li>As part of
-        <a href="../dphys2/">dphys2</a>. Made
+      <li>Thsi was still as part of <a href="../dphys2/">dphys2</a>. Made
         <a href="dphys-swapfile">dphys-swapfile</a> script to automatically
         generate/activate/resize an swapfile, default 2*RAM size, and also
         deactivate/delete it at the approriate time</li>
     </ul>
     Milestone/Release 5 (2004.07.29):
     <ul>
-      <li>Split out of dphys2 into an separate project, as these tools are
-        also usefull without dphys2</li>
+      <li>Split out of dphys2 into an separate project, as this tool is
+        also usefull without dphys2, on any Linux system</li>
       <li>Reworked as separate /sbin and /etc/init.d scripts</li>
     </ul>
     Milestone/Release 6 (2006.09.15):
@@ -64,6 +63,11 @@
       <li>Repackaged as separate non-debianised upstream for later
         debianisation by separate maintainer</li>
       <li>Slight code and documentation improvements</li>
+    </ul>
+    Milestone/Release 7 (2006.10.20):
+    <ul>
+      <li>Code and docs tidy up, extensive quoting improvements, no
+        absolut paths in commands</li>
     </ul>
     Current (= development, = may be broken):
     <ul>
@@ -95,6 +99,26 @@
           dphys-swapfile.example</a>, example config file, containing only the
           default settings as comments, to adapt to your site</li>
         <li><a href="init.d.example">
+          init.d.example</a>, example init.d script to run dphys-swapfile every
+          boot and shutdown, to resize/swapon and swapoff</li>
+      </ul></li>
+    </ul>
+    Milestone/Release 7 (2006.10.20):
+      <li><a href="../dphys-swapfile-20061020/INSTALL">
+        Installation Guide</a></li>
+      <li>entire project: <a href="../dphys-swapfile-20061020.tar.gz">
+        dphys-swapfile-20061020.tar.gz</a></li>
+      <li>single files:<ul>
+        <li><a href="../dphys-swapfile-20061020/Makefile">
+          Makefile</a>, control process</li>
+        <li><a href="../dphys-swapfile-20061020/dphys-swapfile">
+          dphys-swapfile</a>, size/setup/mount/delete swap file script</li>
+        <li><a href="../dphys-swapfile-20061020/dphys-swapfile.8">
+          dphys-swapfile.8</a>, man page for dphys-swapfile</li>
+        <li><a href="../dphys-swapfile-20061020/dphys-swapfile.example">
+          dphys-swapfile.example</a>, example config file, containing only the
+          default settings as comments, to adapt to your site</li>
+        <li><a href="../dphys-swapfile-20061020/init.d.example">
           init.d.example</a>, example init.d script to run dphys-swapfile every
           boot and shutdown, to resize/swapon and swapoff</li>
       </ul></li>
@@ -146,6 +170,8 @@
     <ul>
       <li><a href="http://www.phys.ethz.ch/~franklin/Projects/dphys2/">
         dphys2 project this project was spawned from</a></li>
+      <li><a href="http://packages.debian.org/dphys-swapfile">
+        official Debian Package of dphys-swapfile</a></li>
     </ul>
 
 
@@ -154,6 +180,6 @@
     <a href="../../index.html.en">Home</a> |
     <a href="../index.html.en">Projects</a> | dphys-swapfile
     <p>
-    This page is by Neil Franklin, last modification 2006.09.15
+    This page is by Neil Franklin, last modification 2006.10.20
   </body>
 </html>

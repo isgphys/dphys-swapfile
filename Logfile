@@ -241,6 +241,28 @@ released 6th (and 2nd feature completed, just repackaged and fixes) milestone
   copy to ../dphys-swapfile-20060915, made tar file of that
   remade ../dphys-swapfile.tar.gz archive for current state
 
+2006.10.13 Fri
+do all changes done since then to dphys-config, get up to same code standard
+  PATH= revised, removed absolute paths in commands
+    no /usr/local stuff, as no FreeBSD port intended, too Linux specific
+    Makefile dphys-swapfile init.d.example
+  check possibly problematic code features
+    echo -e  replaced by normal  echo,  no \? in it anyway
+    no ./<commandname> config script called, cut -f only 1 harmless one
+    "" quoting updated in dphys-swapfile init.d.example
+    no ~ used anywhere, as is not user software
+    no shell functions, so no keyword function to remove
+  remade ../dphys-swapfile.tar.gz archive
+
+2006.10.20 Fri
+analog to dphys-config also run automatic quoting check
+  added all missing, even in places where it can never fail, so check quiet
+  remade ../dphys-swapfile.tar.gz archive
+after all bugfixes and changes new release
+  updated FAQ, INSTALL, README, index.html.en
+  copy to ../dphys-swapfile-20061020, made tar file of that
+  remade ../dphys-swapfile.tar.gz archive for current state
+
 ------ project status
 
 doing:

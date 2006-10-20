@@ -1,5 +1,5 @@
 http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile/INSTALL
-author Neil Franklin, last modification 2006.09.15
+author Neil Franklin, last modification 2006.10.20
 copyright ETH Zuerich Physics Departement
   use under either modified/non-advertising BSD or GPL license
 
@@ -13,7 +13,7 @@ Source install
 
    http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile.tar.gz or
    http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile-<date>.tar.gz
-     where last milestone/release is <date>=20040729
+     where last milestone/release is <date>=20061020
 
    make
    make install
