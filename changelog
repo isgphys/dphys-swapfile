@@ -1,0 +1,23 @@
+dphys-swapfile (20061020-2) unstable; urgency=low
+
+  * Apply patch to remove maximal swapfile size. (Closes: #502200)
+    Thanks to Jacob Elder for the patch.
+  * Update my email address.
+  * Bump standards version.
+  * Bump debhelper version.
+  * Update debian/copyright.
+  * Move Homepage field in debian/control.
+
+ -- Gürkan Sengün <gurkan@phys.ethz.ch>  Thu, 19 Mar 2009 13:34:14 +0100
+
+dphys-swapfile (20061020-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Gürkan Sengün <gurkan@linuks.mine.nu>  Thu, 26 Oct 2006 09:15:10 +0200
+
+dphys-swapfile (20060915-1) unstable; urgency=low
+
+  * Initial release. (Closes: #388631)
+
+ -- Gürkan Sengün <gurkan@linuks.mine.nu>  Fri, 15 Sep 2006 19:02:47 +0200

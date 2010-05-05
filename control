@@ -1,0 +1,14 @@
+Source: dphys-swapfile
+Section: admin
+Priority: optional
+Maintainer: Gürkan Sengün <gurkan@phys.ethz.ch>
+Build-Depends: debhelper (>= 7)
+Homepage: http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile/
+Standards-Version: 3.8.1
+
+Package: dphys-swapfile
+Architecture: all
+Description: Autogenerate and use a swap file
+ This init.d script exists so one does not need to have a fixed size
+ swap partition. Instead install without swap partition and then run this,
+ with file size (re-)computed automatically to fit the current RAM size.
