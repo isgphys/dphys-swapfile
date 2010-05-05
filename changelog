@@ -5,6 +5,7 @@ dphys-swapfile (20061020-3) unstable; urgency=low
     this patch, the problem described in #564466 would have been so
     harmful as it is.
   * Updated homepage URL
+  * Moved to quilt patch management
 
  -- Axel Beckert <abe@debian.org>  Wed, 05 May 2010 19:15:58 +0200
 
