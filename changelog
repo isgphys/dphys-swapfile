@@ -5,7 +5,8 @@ dphys-swapfile (20061020-3) unstable; urgency=low
     this patch, the problem described in #564466 would have been so
     harmful as it is.
   * Updated homepage URL
-  * Moved to quilt patch management
+  * Moved to quilt patch management. New patches:
+    - adapt-source-code-comments-and-output.diff
   * Bumped standards version to 3.8.4 (no changes necessary)
   * Added Vcs-* headers
 

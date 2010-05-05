@@ -1,0 +1,74 @@
+Makes SWAPFACTOR and MAXPATH officially configurable values
+
+Index: dphys-swapfile-20061020/dphys-swapfile
+===================================================================
+--- dphys-swapfile-20061020.orig/dphys-swapfile	2010-05-05 20:16:39.000000000 +0200
++++ dphys-swapfile-20061020/dphys-swapfile	2010-05-05 20:19:03.000000000 +0200
+@@ -12,6 +12,12 @@
+ # size we want to force it to be, default (empty) gives 2*RAM
+ CONF_SWAPSIZE=
+ 
++# this is what we want, 2 times RAM size
++CONF_SWAPFACTOR=2
++
++# Formerly a hard kernel limit (in MBytes), now a safeguard from using
++# up too much disk space on modern computers with a lot of RAM
++CONF_MAXSWAP=2048
+ 
+ ### ------ actual implementation from here on
+ # no user settings any more below this point
+@@ -22,13 +28,6 @@
+ PATH=/sbin:/bin:/usr/sbin:/usr/bin
+ export PATH
+ 
+-
+-# this is what we want, 2 times RAM size
+-SWAPFACTOR=2
+-# this is a (outdated?) kernel limit (in MBytes), do not overrun it
+-MAXSWAP=2048
+-
+-
+ # what we are
+ NAME=dphys-swapfile
+ PNAME=dphys-swapfile
+@@ -53,16 +52,16 @@
+       # make MBytes which rounded down will be exactly 1 too few, so add 1
+       MEMSIZE="`expr "${KCORESIZE}" / 1048576 + 1`"
+       # default, without config file overwriding, swap=2*RAM
+-      CONF_SWAPSIZE="`expr "${MEMSIZE}" '*' "${SWAPFACTOR}"`"
++      CONF_SWAPSIZE="`expr "${MEMSIZE}" '*' "${CONF_SWAPFACTOR}"`"
+     fi
+ 
+     # announce end resulting config
+     echo -n "want ${CONF_SWAPFILE}=${CONF_SWAPSIZE}MByte"
+ 
+     # check for legitimate swap size and restrict to it
+-    if [ "${CONF_SWAPSIZE}" -gt "${MAXSWAP}" ] ; then
+-      echo -n ", limiting to kernel limit: ${MAXSWAP}MBytes"
+-      CONF_SWAPSIZE="${MAXSWAP}"
++    if [ "${CONF_SWAPSIZE}" -gt "${CONF_MAXSWAP}" ] ; then
++      echo -n ", limiting to ${CONF_MAXSWAP}MBytes as configured"
++      CONF_SWAPSIZE="${CONF_MAXSWAP}"
+     fi
+ 
+ 
+Index: dphys-swapfile-20061020/dphys-swapfile.8
+===================================================================
+--- dphys-swapfile-20061020.orig/dphys-swapfile.8	2010-05-05 20:21:26.000000000 +0200
++++ dphys-swapfile-20061020/dphys-swapfile.8	2010-05-05 20:24:51.000000000 +0200
+@@ -59,6 +59,15 @@
+ Force file size to this. Default is 2*RAM size. This is unlikely to be needed,
+ unless in strange diskspace situations. Note that swap enabled and smaller
+ than RAM causes kernal-internal VM trouble on random systems.
++.TP
++.B CONF_SWAPFACTOR
++Set the relation between RAM and swap size. Defaults to 2 which means
++swap size = 2 * RAM size
++.TP
++.B CONF_MAXSWAP
++Set maximum size of the swap file in MBytes. Defaults to 2048 which
++was the former kernel limit for the swapfile size and is now a limit
++to prevent unusual big swap files on systems with a lot of RAM.
+ 
+ .SH FILES
+ 
