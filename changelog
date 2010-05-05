@@ -12,6 +12,7 @@ dphys-swapfile (20061020-3) unstable; urgency=low
   * Bumped standards version to 3.8.4 (no changes necessary)
   * Added Vcs-* headers
   * Added debian/source/format
+  * Added watch file
 
  -- Axel Beckert <abe@debian.org>  Wed, 05 May 2010 19:15:58 +0200
 
