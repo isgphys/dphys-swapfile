@@ -7,6 +7,7 @@ dphys-swapfile (20061020-3) unstable; urgency=low
   * Updated homepage URL
   * Moved to quilt patch management
   * Bumped standards version to 3.8.4 (no changes necessary)
+  * Added Vcs-* headers
 
  -- Axel Beckert <abe@debian.org>  Wed, 05 May 2010 19:15:58 +0200
 

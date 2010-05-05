@@ -5,6 +5,8 @@ Maintainer: Axel Beckert <abe@debian.org>
 Build-Depends: debhelper (>= 7), quilt
 Homepage: http://neil.franklin.ch/Projects/dphys-swapfile/
 Standards-Version: 3.8.4
+Vcs-Git: http://git.phys.ethz.ch/dphys-swapfile-debian.git
+Vcs-Browser: http://git.phys.ethz.ch/?p=dphys-swapfile-debian.git
 
 Package: dphys-swapfile
 Architecture: all
