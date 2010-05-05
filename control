@@ -3,7 +3,7 @@ Section: admin
 Priority: optional
 Maintainer: Axel Beckert <abe@debian.org>
 Build-Depends: debhelper (>= 7)
-Homepage: http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile/
+Homepage: http://neil.franklin.ch/Projects/dphys-swapfile/
 Standards-Version: 3.8.1
 
 Package: dphys-swapfile
