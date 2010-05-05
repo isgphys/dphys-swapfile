@@ -13,8 +13,8 @@
 
 ### BEGIN INIT INFO
 # Provides:          dphys-swapfile
-# Required-Start:    $syslog
-# Required-Stop:     $syslog
+# Required-Start:    $syslog $remote_fs
+# Required-Stop:     $syslog $remote_fs
 # Should-Start:      $local_fs
 # Should-Stop:       $local_fs
 # Default-Start:     2 3 4 5
