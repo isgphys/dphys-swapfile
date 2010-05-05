@@ -1,3 +1,12 @@
+dphys-swapfile (20061020-3) unstable; urgency=low
+
+  * New maintainer
+  * Removed patch which removed the swapfile size limit (#502200). Without
+    this patch, the problem described in #564466 would have been so
+    harmful as it is.
+
+ -- Axel Beckert <abe@debian.org>  Wed, 05 May 2010 19:15:58 +0200
+
 dphys-swapfile (20061020-2) unstable; urgency=low
 
   * Apply patch to remove maximal swapfile size. (Closes: #502200)

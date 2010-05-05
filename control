@@ -1,7 +1,7 @@
 Source: dphys-swapfile
 Section: admin
 Priority: optional
-Maintainer: Gürkan Sengün <gurkan@phys.ethz.ch>
+Maintainer: Axel Beckert <abe@debian.org>
 Build-Depends: debhelper (>= 7)
 Homepage: http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile/
 Standards-Version: 3.8.1
