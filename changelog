@@ -13,6 +13,8 @@ dphys-swapfile (20061020-3) unstable; urgency=low
   * Added Vcs-* headers
   * Added debian/source/format
   * Added watch file
+  * Added "Depends: ${misc:Depends}" to debian/control due to debhelper
+    usage
 
  -- Axel Beckert <abe@debian.org>  Wed, 05 May 2010 19:15:58 +0200
 
