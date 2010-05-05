@@ -8,6 +8,7 @@ dphys-swapfile (20061020-3) unstable; urgency=low
   * Moved to quilt patch management. New patches:
     - adapt-source-code-comments-and-output.diff
     - check-for-empty-or-zero-maxswap.diff
+    - use-meminfo-instead-of-kcore.diff (Closes: #564466)
   * Bumped standards version to 3.8.4 (no changes necessary)
   * Added Vcs-* headers
 
