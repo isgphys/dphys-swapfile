@@ -20,7 +20,7 @@ dphys-swapfile (20061020-3) unstable; urgency=low
     section
   * Added NEWS.Debian mentioning behaviour changes
 
- -- Axel Beckert <abe@debian.org>  Wed, 05 May 2010 21:29:23 +0200
+ -- Axel Beckert <abe@debian.org>  Wed, 05 May 2010 21:33:53 +0200
 
 dphys-swapfile (20061020-2) unstable; urgency=low
 
