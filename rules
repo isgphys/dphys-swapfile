@@ -6,8 +6,8 @@ include /usr/share/quilt/quilt.make
 
 configure: configure-stamp
 configure-stamp: $(QUILT_STAMPFN)
-        dh_testdir
-        touch configure-stamp
+	dh_testdir
+	touch configure-stamp
 
 build: build-stamp
 
