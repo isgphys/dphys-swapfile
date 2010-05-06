@@ -1,7 +1,7 @@
 dphys-swapfile (20100506~current-1) unstable; urgency=low
 
   * New upstream snapshot
-  * All patches introduced in the last upload have been accepted by
+  * All patches introduced in the previous upload have been accepted by
     upstream (partially being improved, too) within a day and therefore
     been removed from the package. Thanks, Neil!
     + remove build dependency on quilt, too.
