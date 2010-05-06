@@ -1,16 +1,33 @@
 #! /bin/sh
 # /sbin/dphys-swapfile - automatically set up an swapfile
-# author Neil Franklin, last modification 2006.10.20
+# author Neil Franklin, last modification 2010.05.05
 # This script is copyright ETH Zuerich Physics Departement,
 #   use under either BSD or GPL license
 
+# this script is intended to be run as root user, usually while booting
+
+
 ### ------ configuration for this site
+
+
+# --- CONF_* various site dependant user config variables
 
 # where we want the swapfile to be, this is the default
 CONF_SWAPFILE=/var/swap
 
-# size we want to force it to be, default (empty) gives 2*RAM
+# set size to absolute value, leaving empty (default) then uses computed value
+#   you most likely don't want this, unless you have an special disk situation
 CONF_SWAPSIZE=
+
+# set size to computed value, this times RAM size, dynamically adapts,
+#   guarantees that there is enough swap without wasting disk space on excess
+CONF_SWAPFACTOR=2
+
+# restrict size (computed and absolute!) to maximally this limit
+#   can be set to empty for no limit, but beware of filled partitions!
+#   this is/was a (outdated?) 32bit kernel limit (in MBytes), do not overrun it
+#   but is also sensible on 64bit to prevent filling /var or even / partition
+CONF_MAXSWAP=2048
 
 
 ### ------ actual implementation from here on
@@ -18,22 +35,16 @@ CONF_SWAPSIZE=
 
 set -e
 
-# get ready to work
+# sanitise this place, else some commands may fail
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 export PATH
-
-
-# this is what we want, 2 times RAM size
-SWAPFACTOR=2
-# this is a (outdated?) kernel limit (in MBytes), do not overrun it
-MAXSWAP=2048
 
 
 # what we are
 NAME=dphys-swapfile
 PNAME=dphys-swapfile
 
-# check user config file, let user overwride settings
+# check user config file, let user override settings
 #   swap file place/filename and size
 if [ -f /etc/"${PNAME}" ] ; then
   . /etc/"${PNAME}"
@@ -46,28 +57,38 @@ case "$1" in
     # (re-)size/-generate, fast if no memory size change
 
     if [ "${CONF_SWAPSIZE}" = "" ] ; then
-      # compute automatic optimal size
+      # no absolute size given, so automatically compute optimal size
       echo -n "computing size, "
       # this seems to be the nearest to physical RAM size, lacks about 60k
-      KCORESIZE="`ls -l /proc/kcore | awk '{ print $5 }'`"
-      # make MBytes which rounded down will be exactly 1 too few, so add 1
-      MEMSIZE="`expr "${KCORESIZE}" / 1048576 + 1`"
-      # default, without config file overwriding, swap=2*RAM
-      CONF_SWAPSIZE="`expr "${MEMSIZE}" '*' "${SWAPFACTOR}"`"
+      #   but it actually then fails from AMD64 kernel 2.6.32 onwards
+      #KCORESIZE="`ls -l /proc/kcore | awk '{ print $5 }'`"
+      ## make MBytes which rounded down will be exactly 1 too few, so add 1
+      #MEMSIZE="`echo "${KCORESIZE} 1048576 / 1 + p q" | dc`"
+      # so second attempt at finding out physical RAM size, lacks about 10M
+      #   see how long this variant stays usable :-)
+      MEMTOTAL="`grep '^MemTotal:' /proc/meminfo | awk '{ print $2 }'`"
+      # make MBytes which rounded down will be about 10 too few, so add 10
+      MEMSIZE="`echo "${MEMTOTAL} 1024 / 10 + p q" | dc`"
+      # compute desired swap size, as factor * RAM
+      CONF_SWAPSIZE="`echo "${MEMSIZE} ${CONF_SWAPFACTOR} * p q" | dc`"
+      # remove any fractional MBytes
+      CONF_SWAPSIZE="`echo "${CONF_SWAPSIZE}" | cut -f 1 -d '.'`"
     fi
 
     # announce end resulting config
     echo -n "want ${CONF_SWAPFILE}=${CONF_SWAPSIZE}MByte"
 
-    # check for legitimate swap size and restrict to it
-    if [ "${CONF_SWAPSIZE}" -gt "${MAXSWAP}" ] ; then
-      echo -n ", limiting to kernel limit: ${MAXSWAP}MBytes"
-      CONF_SWAPSIZE="${MAXSWAP}"
+    if [ "${CONF_MAXSWAP}" != "" ] ; then
+      # check for swap size limit and restrict to it
+      if [ "${CONF_SWAPSIZE}" -gt "${CONF_MAXSWAP}" ] ; then
+        echo -n ", restricting to config limit: ${CONF_MAXSWAP}MBytes"
+        CONF_SWAPSIZE="${CONF_MAXSWAP}"
+      fi
     fi
 
 
     # we will be later starting, and in between possible deleting/rebuilding
-    #   so deactivate any allready running swapfile, to avoid errors
+    #   so deactivate any already running swapfile, to avoid errors
     "$0" swapoff
 
 
@@ -78,16 +99,12 @@ case "$1" in
       echo -n ", checking existing"
 
       # we need bytes for comparing with existing swap file
-      SWAPBYTES="`expr "${CONF_SWAPSIZE}" '*' 1048576`"
+      SWAPBYTES="`echo "${CONF_SWAPSIZE} 1048576 * p q" | dc`"
 
       FILEBYTES="`ls -l "${CONF_SWAPFILE}" | awk '{ print $5 }'`"
 
       # wrong size, get rid of existing swapfile, after remake
       if [ "${FILEBYTES}" != "${SWAPBYTES}" ] ; then
-
-        # updates to this section need duplicating in postrm script
-        #   can not simply make subroutine here and call that from postrm
-        #     as this script is deleted before  postrm purge  is called
 
         echo -n ": deleting wrong size file (${FILEBYTES})"
 
@@ -117,16 +134,17 @@ case "$1" in
       # ensure that only root can read possibly critical stuff going in here
       chmod 600 "${CONF_SWAPFILE}"
 
-      # do not mount swapfile via fstab, because S35mountall.sh is already done
-      #   so just add warning comment line that swapfile is not in fstab
-      #     and so gets mounted by this script
+      # do not mount swapfile via fstab, because swapfile may only
+      #   be created after partitions are all mounted, not here yet
+      # so just add warning comment line that swapfile is not in fstab
+      #   and because of this will get mounted by this script
       # get rid of possibly already existing comment about
-      #   swapfile mounted by this script
-      grep -v "^# a swapfile" /etc/fstab > /etc/.fstab
+      #   swapfile mounted by this script, to avoid duplicate comments
+      grep -v "a swapfile is not" /etc/fstab > /etc/.fstab
       grep -v "${NAME}" /etc/.fstab > /etc/fstab
       # add new comment about this
-      echo "# a swapfile is not a swap partition, so no using swapon|off" \
-        "from here on, use  ${NAME} swap[on|off]  for that" >> /etc/fstab
+      echo "# a swapfile is not a swap partition, no line here" >> /etc/fstab
+      echo "#   use  ${NAME} swap[on|off]  for that" >> /etc/fstab
 
       # and inform the user what we did
       echo -n " of ${CONF_SWAPSIZE}MBytes"
@@ -185,8 +203,8 @@ case "$1" in
       rm "${CONF_SWAPFILE}"
     fi
 
-    # and get rid of comment about swapfile mounting
-    grep -v "^# a swapfile" /etc/fstab > /etc/.fstab
+    # and get rid of now superfluous comment about swapfile mounting
+    grep -v "a swapfile is not" /etc/fstab > /etc/.fstab
     grep -v "${NAME}" /etc/.fstab > /etc/fstab
 
     ;;

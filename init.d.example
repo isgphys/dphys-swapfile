@@ -1,6 +1,6 @@
 #!/bin/sh
 # /etc/init.d/dphys-swapfile - automatically set up an swapfile
-# author Neil Franklin, last modification 2006.10.13
+# author Neil Franklin, last modification 2006.12.22
 # This script is copyright ETH Zuerich Physics Departement,
 #   use under either modified/non-advertising BSD or GPL license
 
@@ -13,7 +13,8 @@
 #   so we run it as rcS.d/S37dphys-config
 
 # get ready to work
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
+# /usr/local added for Slackware, because self installed stuff ends up in there
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 export PATH
 
 # what we are

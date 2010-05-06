@@ -1,11 +1,11 @@
 <html>
-  <!--http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile/index.html.en-->
+  <!--http://neil.franklin.ch/Projects/dphys-swapfile/index.html.en-->
   <head>
-    <title>dphys-swapfile setup/mount script</title>
+    <title>dphys-swapfile Auto-setup/-activation System</title>
     <meta name="keywords"
-      content="neil franklin, ETH, dphys-swapfile, Linux, swap file">
+      content="neil franklin, dphys-swapfile, Linux, autosetup, swap file">
     <meta name="description"
-      content="dphys-swapfile setup/mount script">
+      content="dphys-swapfile auto-setup/-activation system">
   </head>
   <body>
     <a href="../../index.html.en">Home</a> |
@@ -14,7 +14,7 @@
     <hr>
 
 
-    <h2>dphys-swapfile Setup/Mount Script</h2>
+    <h2>dphys-swapfile Auto-setup/-activation System</h2>
 
     <a href="#basics">Project Basics</a><br>
     <a href="#status">Project Status</a><br>
@@ -35,7 +35,10 @@
     <a href="init.d.example">init.d script</a> that runs this script at boot
     and shutdown time.
     <p>
-    This project was spawned from the <a href="../dphys2/">dphys2</a> project.
+    This project was spawned from the
+    <a href="http://nic.phys.ethz.ch/projects/dphys2/">dphys2</a> project
+    (later replaced and made obsolete by the
+    <a href="http://nic.phys.ethz.ch/projects/dphys3/">dphys3</a> project).
 
 
     <a name=status></a>
@@ -47,10 +50,11 @@
     <h4>Done are:</h4>
     Milestone/Release 4 (2004.02.19):
     <ul>
-      <li>Thsi was still as part of <a href="../dphys2/">dphys2</a>. Made
+      <li>This was still as part of
+        <a href="http://nic.phys.ethz.ch/projects/dphys2/">dphys2</a>. Made
         <a href="dphys-swapfile">dphys-swapfile</a> script to automatically
-        generate/activate/resize an swapfile, default 2*RAM size, and also
-        deactivate/delete it at the approriate time</li>
+        generate/resize and activate an swapfile, default 2*RAM size, and also
+        deactivate and delete it at the approriate times</li>
     </ul>
     Milestone/Release 5 (2004.07.29):
     <ul>
@@ -159,8 +163,8 @@
       </ul></li>
     </ul>
     Milestone/Release 4 (2004.02.19) was done as part of:
-    <a href="../dphys2/">dphys2</a>. Milestones/Releases 1-3 of dphys2 predate
-    dphys-swapfile.
+    <a href="http://nic.phys.ethz.ch/projects/dphys2/">dphys2</a>.
+    Milestones/Releases 1-3 of dphys2 predate dphys-swapfile.
 
 
     <a name=links></a>
@@ -168,10 +172,13 @@
 
     Various links that may be usefull:
     <ul>
-      <li><a href="http://www.phys.ethz.ch/~franklin/Projects/dphys2/">
+      <li><a href="http://nic.phys.ethz.ch/projects/dphys2/">
         dphys2 project this project was spawned from</a></li>
+      <li><a href="http://nic.phys.ethz.ch/projects/dphys3/">
+        dphys3 successor to project this project was spawned from</a></li>
       <li><a href="http://packages.debian.org/dphys-swapfile">
-        official Debian Package of dphys-swapfile</a></li>
+        official Debian Package of dphys-swapfile</a> maintained by
+        <a href="http://www.linuks.mine.nu/"></a>Gürkan Sengün</li>
     </ul>
 
 
@@ -180,6 +187,6 @@
     <a href="../../index.html.en">Home</a> |
     <a href="../index.html.en">Projects</a> | dphys-swapfile
     <p>
-    This page is by Neil Franklin, last modification 2006.10.20
+    This page is by Neil Franklin, last modification 2006.12.22
   </body>
 </html>

@@ -1,6 +1,5 @@
-# http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile/Makefile
-# author/generator dphys2 makesrcpackage script - expanded by Neil Franklin,
-#   last modification/generation 2006.10.13
+# http://neil.franklin.ch/Projects/dphys-swapfile/Makefile
+# author Franklin, last modification 2006.12.22
 # This Makefile is copyright ETH Zuerich Physics Departement
 #   use under either modified/non-advertising BSD or GPL license
 
@@ -12,7 +11,8 @@ DIR = dphys-swapfile
 
 # --- no user configurable stuff below here
 
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
+# /usr/local added for Slackware, because self installed stuff ends up in there
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 
 PREFIX  = $(DESTDIR)/usr
 BINDIR  = $(PREFIX)/bin

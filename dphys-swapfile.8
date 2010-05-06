@@ -1,9 +1,9 @@
 .\" /usr/share/man/man8/dphys-swapfile.8(.gz)
-.\" author Neil Franklin, last modification 2006.09.15
+.\" author Neil Franklin, last modification 2010.05.05
 .\" copyright ETH Zuerich Physics Departement
 .\"   use under either modified/non-advertising BSD or GPL license
 
-.TH DPHYS-SWAPFILE 8 "2006.09.15" "D-PHYS Swapfile Tools"
+.TH DPHYS-SWAPFILE 8 "2010.05.05" "D-PHYS Swapfile Tools"
 
 .SH NAME
 
@@ -12,23 +12,25 @@ dphys-swapfile \- set up, mount/unmount, and delete an swap file
 .SH SYNOPSIS
 
 .B dphys-swapfile
-\fBsetup\fP|\fBswapon\fP|\fBswapoff\fP|\fBuninstall\fP
+\fBsetup\fP|\fBinstall\fP|\fBswapon\fP|\fBswapoff\fP|\fBuninstall\fP
 
 .SH DESCRIPTION
 
 dphys-swapfile computes the size for an optimal swap file (and resizes an
-existing swap file if neccessary), mounts an swap file, unmounts it, and and
-delete it if not wanted any more.
+existing swap file if necessary), mounts an swap file, unmounts it, and
+deletes it it is not wanted any more.
 
 .SH OPTIONS
 
 There is only one parameter, an command, which can be either of these:
 .TP
 .B setup
-Tells dphys-swapfile to compute the optimal swap file size and (re-)generate
-an fitting swap file. Default it 2 times RAM size. This can be called at boot
-time, so the file allways stays the right size for current RAM, or run by hand
-whenever RAM size has changed.
+and
+.B install
+Both tell dphys-swapfile to compute the optimal swap file size and
+(re-)generate an fitting swap file. Default it 2 times RAM size. This can be
+called at boot time, so the file allways stays the right size for current RAM,
+or run by hand whenever RAM size has changed.
 .TP
 .B swapon
 and
@@ -37,10 +39,10 @@ These run the \fIswapon \fPand \fIswapoff\fP commands on the swapfile. Note
 that direct swapon/off from \fI/etc/fstab\fP is not possible, as that is (at
 least on Debian) done in the same script that mounts /var (which is where the
 swap file most likely resides). And we need to do our setup between those
-actions. So pass up \fI/etc/fstab\fP, and do our own swapon/off.
+actions. So we pass up on \fI/etc/fstab\fP, and do our own swapon/off here.
 .TP
 .B uninstall
-Gets rid of an unwanted swap file, reclaiming the disk space.
+Gets rid of an unwanted swap file, reclaiming its disk space.
 
 .SH CONFIG
 
@@ -56,9 +58,23 @@ that you will need to change this, unless you have very strange partitioning,
 and then you will most likely be using an swap partition anyway.
 .TP
 .B CONF_SWAPSIZE
-Force file size to this. Default is 2*RAM size. This is unlikely to be needed,
-unless in strange diskspace situations. Note that swap enabled and smaller
-than RAM causes kernal-internal VM trouble on random systems.
+Set size to this absolute value, in MBytes. Leaving this empty (which is the
+Default) uses an computed value as size instead. This is unlikely to ever be
+needed, unless in some strange diskspace situations. Note, that swap enabled
+and size smaller than RAM may causes kernal-internal VM troubles on some
+kernels/systems.
+.TP
+.B CONF_SWAPFACTOR
+Set size to computed value. Uses this value times RAM size. It so dynamically
+adapts to RAM size, guarantees enough swap on large RAM, without going into
+excess diskspace on small RAM (and disk?) systems. Defaults to 2, which gives
+swap size = 2 * RAM size.
+.TP
+.B CONF_MAXSWAP
+Set size restriction of maximal computed and absolute(!) values, in MBytes.
+Defaults to 2048 which was a former 32bit kernel limit for the swapfile size
+and is now a limit to prevent unusually and senselessly big swap files on
+systems with a lot of RAM.
 
 .SH FILES
 
@@ -92,7 +108,7 @@ esac\!
 exit 0\!
 .fi
 .PP
-If an sysadmin wants to have his swapfile in annother place, say /var/run/swap,
+If an sysadmin wants to have the swapfile in another place, say /var/run/swap,
 he can use:
 .PP
 In \fI/etc/dphys-swapfile\fP:
@@ -102,4 +118,4 @@ CONF_SWAPFILE=/var/run/swap
 
 .SH AUTHOR
 
-franklin@phys.ethz.ch, http://www.phys.ethz.ch/~franklin/
+neil@franklin.ch, http://neil.franklin.ch/

@@ -1,10 +1,12 @@
-http://www.phys.ethz.ch/~franklin/Projects/dphys-swapfile/Logfile - done, to do
+http://neil.franklin.ch/Projects/dphys-swapfile/Logfile - done, to do
 author Neil Franklin, last modification see last entry near bottom
 copyright ETH Zuerich Physics Departement
   use under either modified/non-advertising BSD or GPL license
 
 background is the dphys2 project, read its Logfile at:
-  http://www.phys.ethz.ch/~franklin/Projects/dphys2/Logfile
+  http://nic.phys.ethz.ch/projects/dphys2/Logfile
+and its successor, the dphys3 project, read its Logfile at:
+  http://nic.phys.ethz.ch/projects/dphys3/Logfile
 as part of that wrote this tool to auto-generate/us an swapfile
   here only log of the events pertaining to making this tool
 
@@ -262,6 +264,43 @@ after all bugfixes and changes new release
   updated FAQ, INSTALL, README, index.html.en
   copy to ../dphys-swapfile-20061020, made tar file of that
   remade ../dphys-swapfile.tar.gz archive for current state
+
+2006.12.22 Fri
+as part of taking this over als personal project, after leaving job
+  moved everything from www.phys.ethz.ch/~franklin to neil.franklin.ch website
+    changes all URLs to refer to new home, expanded links to other projects
+  we decided that I will keep on maintaining this project (and dphys-config)
+    as I also use these 2 projects at home on my own non-Debian systems
+
+2010.05.04 Wed
+bugfixes for reported bug by the new Debian maintainer Axel Beckert
+  this was not prevented because of the old maintainers unreported patch
+    which apparently was changed to have no 2048M limit any more
+  request to make SWAPFACTOR and MAXSWAP into user CONF_* variables
+    and user switchable fixed size CONF_SWAPSIZE or above computed size
+  newer 2.6.32 AMD64 kernels report senselessly large 128T /proc/kcore sizes
+    dphys-swapfile tries to genrate 2*kcore File, fills /var or / Partition
+  also noticed 2 spelling mistakes in comments and man page
+
+2010.05.05 Thu
+renamed SWAPFACTOR and MAXSWAP to CONF_*, modified/improved comments there
+  while at it also allow CONF_MAXSWAP to be undefined, for limitless
+    this is apparently what the old maintainer wanted to achieve
+  updated man page with the new CONF_* stuff, and improved descriptions
+  updated dphys-swapfile.example for /etc/dphys-swapfile to fit program CONF_*
+change now kernelupgrade-broken old size estimation, use /proc/meminfo
+fix a few typos, overwride -> override (or was that intended as overwrite?)
+  dphys-config uses override, so use that here also for consistency
+  allready -> already, overwriding -> overriding, man neccessary -> necessary
+  also a bit of general code tidy up, newer structures from dphys-config
+remade ../dphys-swapfile.tar.gz archive for current state
+  mail to Axel Beckert for his packaging and site testing
+mail answer from Axel Beckert about only integral swap factor problem
+  switch to using dc instead of expr, as in all my other private scripts
+    allows CONF_SWAPFACTOR to also hab non integral values, such as 1.5
+report that Debian kFreeBSD predictably fails, on swapon -s
+  while investigation noticed /etc/fstab comment no linebreaks, fixed it
+
 
 ------ project status
 
