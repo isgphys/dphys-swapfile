@@ -10,7 +10,7 @@ Vcs-Browser: http://git.phys.ethz.ch/?p=dphys-swapfile-debian.git
 
 Package: dphys-swapfile
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, dc
 Description: Autogenerate and use a swap file
  This init.d script exists so one does not need to have a fixed size
  swap partition. Instead install without swap partition and then run this,
