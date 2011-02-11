@@ -7,6 +7,7 @@ dphys-swapfile (20100506~current-1) experimental; urgency=low
       been removed from the package. Thanks, Neil!
       + remove build dependency on quilt, too.
     - Fixed spelling error in previous changelog entry.
+  * Bump Standards-Version to 3.9.1 (no changes)
 
  -- Axel Beckert <abe@debian.org>  Fri, 11 Feb 2011 16:21:47 +0100
 
