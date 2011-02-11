@@ -10,6 +10,14 @@ dphys-swapfile (20100506~current-1) unstable; urgency=low
 
  -- Axel Beckert <abe@debian.org>  Thu, 06 May 2010 20:54:56 +0200
 
+dphys-swapfile (20061020-4) unstable; urgency=low
+
+  * Fix wrong magnitude in last upload's bugfix for 564466 when
+    calculating swap size. (Closes: #612877, LP: #706764) Thanks Antonio
+    Galea <antonio.galea@gmail.com> for a very unintrusive patch.
+
+ -- Axel Beckert <abe@debian.org>  Fri, 11 Feb 2011 14:40:33 +0100
+
 dphys-swapfile (20061020-3) unstable; urgency=low
 
   * New maintainer
