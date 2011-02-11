@@ -1,4 +1,4 @@
-dphys-swapfile (20100506~current-1) unstable; urgency=low
+dphys-swapfile (20100506~current-1) experimental; urgency=low
 
   * New upstream snapshot
     - uses dc instead of expr, so depend on dc
