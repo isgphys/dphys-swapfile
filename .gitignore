@@ -1,1 +1,5 @@
 *~
+/dphys-swapfile.debhelper.log
+/dphys-swapfile.*.debhelper
+/dphys-swapfile/
+/files
