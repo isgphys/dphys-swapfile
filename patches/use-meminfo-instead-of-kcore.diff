@@ -15,7 +15,7 @@ Index: dphys-swapfile-20061020/dphys-swapfile
 -      # make MBytes which rounded down will be exactly 1 too few, so add 1
 -      MEMSIZE="`expr "${KCORESIZE}" / 1048576 + 1`"
 +      # /proc/kcore became unreliable so let's use /proc/meminfo instead
-+      MEMSIZE="`head -1 /proc/meminfo | awk '{ print $2 }'`"
++      MEMSIZE="`head -1 /proc/meminfo | awk '{ print int($2/1024) }'`"
        # default, without config file overwriding, swap=2*RAM
        CONF_SWAPSIZE="`expr "${MEMSIZE}" '*' "${CONF_SWAPFACTOR}"`"
      fi

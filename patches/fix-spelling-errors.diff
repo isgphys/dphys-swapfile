@@ -16,7 +16,7 @@ Index: dphys-swapfile-20061020/dphys-swapfile
 @@ -49,7 +49,7 @@
        echo -n "computing size, "
        # /proc/kcore became unreliable so let's use /proc/meminfo instead
-       MEMSIZE="`head -1 /proc/meminfo | awk '{ print $2 }'`"
+       MEMSIZE="`head -1 /proc/meminfo | awk '{ print int($2/1024) }'`"
 -      # default, without config file overwriding, swap=2*RAM
 +      # default, without config file overriding, swap=2*RAM
        CONF_SWAPSIZE="`expr "${MEMSIZE}" '*' "${CONF_SWAPFACTOR}"`"
