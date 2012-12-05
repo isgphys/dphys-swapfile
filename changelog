@@ -1,3 +1,11 @@
+dphys-swapfile (20100506~current-2) UNRELEASED; urgency=low
+
+  * Install bash completion file provided by Hans-Christoph Steiner
+    (Closes: #685113)
+    + Add bash-completion to build-dependencies
+
+ -- Axel Beckert <abe@debian.org>  Wed, 05 Dec 2012 15:09:03 +0100
+
 dphys-swapfile (20100506~current-1) experimental; urgency=low
 
   * New upstream snapshot
