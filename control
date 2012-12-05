@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Axel Beckert <abe@debian.org>
 Build-Depends: debhelper (>= 7), bash-completion
 Homepage: http://neil.franklin.ch/Projects/dphys-swapfile/
-Standards-Version: 3.9.1
+Standards-Version: 3.9.3
 Vcs-Git: http://git.phys.ethz.ch/dphys-swapfile-debian.git
 Vcs-Browser: http://git.phys.ethz.ch/?p=dphys-swapfile-debian.git
 
