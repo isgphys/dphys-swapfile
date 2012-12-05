@@ -1,8 +1,7 @@
 dphys-swapfile (20100506~current-2) UNRELEASED; urgency=low
 
-  * Install bash completion file provided by Hans-Christoph Steiner
-    (Closes: #685113)
-    + Add bash-completion to build-dependencies
+  * Install bash completion file and example configuration file provided
+    by Hans-Christoph Steiner (Closes: #685113, #685169) Thanks!
   * Bump Standards-Version to 3.9.3 (no changes)
   * Fix lintian warnings:
     + debian-rules-missing-recommended-target
