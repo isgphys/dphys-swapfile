@@ -1,6 +1,6 @@
-dphys-swapfile (20100506.1~current-1) UNRELEASED; urgency=low
+dphys-swapfile (20100506-1) UNRELEASED; urgency=low
 
-  * New upstream snapshot
+  * New upstream release
     + Fixes issues on kfreebsd-*.
   * Install bash completion file provided by Hans-Christoph Steiner
     (Closes: #685113) Thanks!
@@ -14,7 +14,7 @@ dphys-swapfile (20100506.1~current-1) UNRELEASED; urgency=low
   * Switch Vcs-* headers to GitHub
   * Add Elmar to Uploaders.
 
- -- Axel Beckert <abe@debian.org>  Mon, 11 Feb 2013 18:17:21 +0100
+ -- Axel Beckert <abe@debian.org>  Mon, 11 Feb 2013 18:34:32 +0100
 
 dphys-swapfile (20100506~current-1) experimental; urgency=low
 
