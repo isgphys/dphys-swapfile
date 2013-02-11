@@ -28,6 +28,8 @@ install: build
 	dh_prep
 	dh_installdirs
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/dphys-swapfile
+	dh_install
+	cd debian/dphys-swapfile/etc/ && mv -v dphys-swapfile.example dphys-swapfile
 
 # Build architecture-independent files here.
 binary-indep: build install
