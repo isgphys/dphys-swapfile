@@ -6,6 +6,7 @@ dphys-swapfile (20100506-1) UNRELEASED; urgency=low
     (Closes: #685113) Thanks!
   * Install upstream's example configuration file also to /etc/. (Closes:
     #685169)
+  * Switch to source format "3.0 (quilt)"
   * Bump Standards-Version to 3.9.3 (no changes)
   * Fix lintian warnings:
     + debian-rules-missing-recommended-target
