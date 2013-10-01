@@ -14,6 +14,7 @@ dphys-swapfile (20100506-1) UNRELEASED; urgency=low
     + no-upstream-changelog
     + copyright-refers-to-symlink-license
     + init.d-script-does-not-source-init-functions
+    + init.d-script-does-not-implement-optional-option status
   * Switch Vcs-* headers to GitHub
   * Add Elmar to Uploaders.
   * Bump debhelper compatibility to 9.

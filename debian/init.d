@@ -62,8 +62,8 @@ case "$1" in
     ;;
 
 
-  restart|reload|force-reload)
-    /bin/echo "No daemon to (force-)re[start|load] in ${NAME}"
+  restart|reload|force-reload|status)
+    /bin/echo "No daemon to (force-)re[start|load] or status check in ${NAME}"
     ;;
 
 
