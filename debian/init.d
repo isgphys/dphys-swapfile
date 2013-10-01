@@ -26,6 +26,8 @@
 #                    RAM size.
 ### END INIT INFO
 
+. /lib/lsb/init-functions
+
 # get ready to work
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 export PATH

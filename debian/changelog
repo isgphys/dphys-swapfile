@@ -12,6 +12,7 @@ dphys-swapfile (20100506-1) UNRELEASED; urgency=low
     + debian-rules-missing-recommended-target
     + no-upstream-changelog
     + copyright-refers-to-symlink-license
+    + init.d-script-does-not-source-init-functions
   * Switch Vcs-* headers to GitHub
   * Add Elmar to Uploaders.
 
