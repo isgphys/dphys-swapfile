@@ -18,7 +18,6 @@ build-stamp: configure-stamp
 clean:
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp configure-stamp
 	$(MAKE) clean
 	dh_clean
 

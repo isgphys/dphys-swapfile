@@ -17,6 +17,8 @@ dphys-swapfile (20100506-1) UNRELEASED; urgency=low
   * Add Elmar to Uploaders.
   * Bump debhelper compatibility to 9.
     + Update versioned debhelper build-dependency accordingly.
+  * Revamp debian/rules:
+    + No more clean stamp files manually, done by dh_clean already
 
  -- Axel Beckert <abe@debian.org>  Mon, 11 Feb 2013 18:34:32 +0100
 
