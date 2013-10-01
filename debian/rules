@@ -12,13 +12,13 @@ build-arch: build-stamp
 build-indep: build-stamp
 build-stamp: configure-stamp
 	dh_testdir
-	$(MAKE)
+	dh_auto_build
 	touch $@
 
 clean:
 	dh_testdir
 	dh_testroot
-	$(MAKE) clean
+	dh_auto_clean
 	dh_clean
 
 install: build
@@ -26,7 +26,7 @@ install: build
 	dh_testroot
 	dh_prep
 	dh_installdirs
-	$(MAKE) install DESTDIR=$(CURDIR)/debian/dphys-swapfile
+	dh_auto_install
 	dh_install
 	cd debian/dphys-swapfile/etc/ && mv -v dphys-swapfile.example dphys-swapfile
 

@@ -19,6 +19,7 @@ dphys-swapfile (20100506-1) UNRELEASED; urgency=low
     + Update versioned debhelper build-dependency accordingly.
   * Revamp debian/rules:
     + No more clean stamp files manually, done by dh_clean already
+    + Use dh_auto_{build,install,clean}
 
  -- Axel Beckert <abe@debian.org>  Mon, 11 Feb 2013 18:34:32 +0100
 
