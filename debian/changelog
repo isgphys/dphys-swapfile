@@ -1,5 +1,6 @@
-dphys-swapfile (20100506-1) UNRELEASED; urgency=low
+dphys-swapfile (20100506-1) unstable; urgency=low
 
+  * Upload to unstable again.
   * New upstream release
     + Fixes issues on kfreebsd-*.
   * Install bash completion file provided by Hans-Christoph Steiner
@@ -27,7 +28,7 @@ dphys-swapfile (20100506-1) UNRELEASED; urgency=low
     + Finally switch to a minimal dh7 style debian/rules file
   * Apply wrap-and-sort.
 
- -- Axel Beckert <abe@debian.org>  Mon, 11 Feb 2013 18:34:32 +0100
+ -- Axel Beckert <abe@debian.org>  Tue, 01 Oct 2013 20:20:40 +0200
 
 dphys-swapfile (20100506~current-1) experimental; urgency=low
 
