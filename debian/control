@@ -18,3 +18,6 @@ Description: Autogenerate and use a swap file
  This init.d script exists so one does not need to have a fixed size
  swap partition. Instead install without swap partition and then run this,
  with file size (re-)computed automatically to fit the current RAM size.
+ .
+ By default (and hence on installation) it creates swapfile twice as
+ big as the present RAM amount with an upper limit of 2 GB.

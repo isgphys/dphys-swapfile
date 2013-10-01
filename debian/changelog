@@ -6,6 +6,8 @@ dphys-swapfile (20100506-1) UNRELEASED; urgency=low
     (Closes: #685113) Thanks!
   * Install upstream's example configuration file also to /etc/. (Closes:
     #685169)
+  * Add note to long description about the default values used upon
+    installation. (See #596187 for reasoning.)
   * Switch to source format "3.0 (quilt)"
     + Remove debian/README.source
   * Bump Standards-Version to 3.9.4 (no changes)
