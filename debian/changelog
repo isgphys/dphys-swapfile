@@ -9,6 +9,8 @@ dphys-swapfile (20100506-2) UNRELEASED; urgency=medium
     + Update upstream author's e-mail address.
     + Update initial packager's last name.
     + Fix download URL (dphys-config vs dphys-swapfile; follow redirect)
+  * Long package description: Add a paragraph about usefulness with
+    provisioned SD card, USB stick and disk images.
 
  -- Axel Beckert <abe@debian.org>  Wed, 30 Mar 2016 21:13:58 +0200
 

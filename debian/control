@@ -21,3 +21,8 @@ Description: Autogenerate and use a swap file
  .
  By default (and hence on installation) it creates swapfile twice as
  big as the present RAM amount with an upper limit of 2 GB.
+ .
+ It's also very helpful when included in SD card, USB stick or disk
+ images which are distributed and run on many machines with different
+ amount of RAM, e.g. different models of the Raspberry Pi or cloud
+ images.
