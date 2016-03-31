@@ -7,7 +7,7 @@ Build-Depends: bash-completion,
                debhelper (>= 9~)
 Homepage: http://neil.franklin.ch/Projects/dphys-swapfile/
 Standards-Version: 3.9.7
-Vcs-Git: git://github.com/isgphys/dphys-swapfile.git
+Vcs-Git: https://github.com/isgphys/dphys-swapfile.git
 Vcs-Browser: https://github.com/isgphys/dphys-swapfile
 
 Package: dphys-swapfile

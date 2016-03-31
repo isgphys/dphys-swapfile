@@ -1,6 +1,7 @@
 dphys-swapfile (20100506-2) UNRELEASED; urgency=medium
 
   * Declare compliance with Debian Policy 3.9.7. (No changes needed.)
+  * Switch Vcs-Git header from git:// to https://.
 
  -- Axel Beckert <abe@debian.org>  Wed, 30 Mar 2016 21:13:58 +0200
 
