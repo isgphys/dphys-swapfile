@@ -6,7 +6,7 @@ Uploaders: Elmar S. Heeb <elmar@heebs.ch>
 Build-Depends: bash-completion,
                debhelper (>= 9~)
 Homepage: http://neil.franklin.ch/Projects/dphys-swapfile/
-Standards-Version: 3.9.7
+Standards-Version: 3.9.8
 Vcs-Git: https://github.com/isgphys/dphys-swapfile.git
 Vcs-Browser: https://github.com/isgphys/dphys-swapfile
 
