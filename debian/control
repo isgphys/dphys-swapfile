@@ -7,8 +7,8 @@ Build-Depends: bash-completion,
                debhelper (>= 9~)
 Homepage: http://neil.franklin.ch/Projects/dphys-swapfile/
 Standards-Version: 3.9.8
-Vcs-Git: https://github.com/isgphys/dphys-swapfile.git
-Vcs-Browser: https://github.com/isgphys/dphys-swapfile
+Vcs-Git: https://anonscm.debian.org/git/pkg-dphys/dphys-swapfile.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-dphys/dphys-swapfile.git
 
 Package: dphys-swapfile
 Architecture: all

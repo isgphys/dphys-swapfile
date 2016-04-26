@@ -1,7 +1,7 @@
 dphys-swapfile (20100506-2) UNRELEASED; urgency=medium
 
   * Declare compliance with Debian Policy 3.9.8. (No changes needed.)
-  * Switch Vcs-Git header from git:// to https://.
+  * Move packaging git repository from GitHub to Alioth.
   * Add lintian-override for accused misspelling "allways".
   * Revamp debian/copyright:
     + Convert to machine-readable DEP5 format.
