@@ -1,4 +1,4 @@
-dphys-swapfile (20100506-2) UNRELEASED; urgency=medium
+dphys-swapfile (20100506-2) unstable; urgency=medium
 
   * Declare compliance with Debian Policy 3.9.8. (No changes needed.)
   * Move packaging git repository from GitHub to Alioth.
@@ -14,7 +14,7 @@ dphys-swapfile (20100506-2) UNRELEASED; urgency=medium
   * Add debian/maintscript to help migration from /etc/bash_completion.d/
     to /usr/share/bash-completion/completions/.
 
- -- Axel Beckert <abe@debian.org>  Wed, 30 Mar 2016 21:13:58 +0200
+ -- Axel Beckert <abe@debian.org>  Thu, 28 Apr 2016 00:30:27 +0200
 
 dphys-swapfile (20100506-1) unstable; urgency=low
 
