@@ -1,3 +1,9 @@
+This GitHub Branch has been discontinued.
+
+The official Debian packaging moved to on https://salsa.debian.org/debian/dphys-swapfile
+
+----
+
 http://neil.franklin.ch/Projects/dphys-swapfile/README
 author Neil Franklin, last modification 2006.12.22
 This text (and all dphys-swapfile) copyright ETH Zuerich Physics Departement
